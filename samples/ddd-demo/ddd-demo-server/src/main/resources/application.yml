@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    # 环境标识，本机开发环境有意义,如果觉得污染,可以IDEA 传入--spring.profiles.active=local
+    active: local
+    include: db,grpc
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  application:
+    name: fit-demo
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    basedir: .
+    connection-timeout: 6s
+    max-connections: 2000
+    accept-count: 200
+    threads:
+      min-spare: 10
+      max: 2000
+    accesslog:
+      #pattern see https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging
+      enabled: true
+      max-days: 2
