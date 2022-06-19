@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>${rootArtifactId}</artifactId>
+        <groupId>${groupId}</groupId>
+        <version>${version}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>${artifactId}</artifactId>
+    <name>${project.artifactId}</name>
+    <description>主程序</description>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+        <!-- web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 作为服务端时候 grpc -->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 作为客户端时候 grpc -->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- DB -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.seezoon</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.seezoon</groupId>
+            <artifactId>ddd-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 调用链 可选-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-instrumentation-grpc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>${rootArtifactId}-stub</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- 配置不打包到jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <!-- 适合多模块的server, 打包成结构化的包 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+            <!-- 生成db 代码的，生成目录在target/seezoon-generated -->
+            <plugin>
+                <groupId>com.seezoon.maven.plugins</groupId>
+                <artifactId>seezoon-generator-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 按实际情况填写,如果担心配置污染代码可以去掉configuration采用命令行传参数-->
+                    <url>jdbc:mysql://127.0.0.1:3306/seezoon</url>
+                    <username>root</username>
+                    <password></password>
+                    <!-- tables下为空则生成全部 -->
+                    <tables>
+                        <table>sys_user</table>
+                    </tables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

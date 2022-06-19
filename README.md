@@ -6,7 +6,7 @@
 
 ## 工程规划
 
-- **统一父POM**：统一maven仓库，公共依赖清单，打包形式等，产出物规范等；
+- **统一父POM**：统一maven仓库，公共依赖清单，公共组件，打包形式等，产出物规范等；
 - **统一运维脚本**：运维脚本统一维护，通过打包时候可以完成升级；
 - **统一工程结构**：采用maven多模块的项目结构，采用DDD的思想对代码职责分层；
 - **统一基础框架**：以spring boot为基础，内部微服务调用采用grpc，http服务采用spring mvc；
@@ -18,16 +18,20 @@
 
 ```
 seezoon-standard  父工程
-├── bom 管理企业内部开源框架依赖
+├── archetypes 定制的maven骨架，快速生成企业制定的基础工程
+│   └── application-archetype 开箱即用工程骨架
+├── bom 管理企业内部开源框架依赖及自身组件库版本
 ├── samples 编写适合企业的样例程序，通过该程序，也可以制作脚手架（Maven Archetype)
-├── seezoon 企业级父POM
+│   └── application-archetype-demo 开箱即用工程骨架工程示例
+├── seezoon 企业级父POM，通过升级该版本可以升级依赖，公共组件等
 ├── seezoon-generator-maven-plugin 代码生成，仓储、dao代码生成
 ├── starters 企业可以制定自己的starters
 │   ├── ddd-spring-boot-starter ddd 基础对象、异常、错误定义等
 │   └── mybatis-spring-boot-starter 对mybatis的基础封装，如果不喜欢可以换成mybatis plus
 ├── tools  工具
 │   ├── code 代码相关工具  
-│   │   └── eclipse-codestyle.xml 代码格式化
+│   │   └── checkstyle.xml 代码检查，早期建议可以不关注，按大公司的标准会增加太多工作量
+│   │   └── eclipse-codestyle.xml 代码格式化（强制）
 │   ├── maintain_script  运维脚本
 │   └── maven
 │       └── settings.xml 制定全员通用的文件

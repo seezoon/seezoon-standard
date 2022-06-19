@@ -1,0 +1,39 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>seezoon</artifactId>
+        <groupId>com.seezoon</groupId>
+        <version>${revision}</version>
+        <relativePath>../seezoon/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>archetypes</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+
+    <properties>
+        <archetype.version>3.2.1</archetype.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>application-archetype</module>
+    </modules>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>${archetype.version}</version>
+            </extension>
+        </extensions>
+    </build>
+
+</project>
