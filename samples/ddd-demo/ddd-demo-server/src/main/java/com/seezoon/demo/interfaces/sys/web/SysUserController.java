@@ -1,5 +1,13 @@
 package com.seezoon.demo.interfaces.sys.web;
 
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.seezoon.ddd.dto.Page;
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.demo.application.sys.UserApplicationService;
@@ -8,14 +16,8 @@ import com.seezoon.demo.application.sys.dto.ModifyUserMobileCmd;
 import com.seezoon.demo.application.sys.dto.QryUserById;
 import com.seezoon.demo.application.sys.dto.QryUserPage;
 import com.seezoon.demo.application.sys.dto.clientobject.UserCO;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户信息
@@ -25,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Validated
 public class SysUserController {
-
 
     private final UserApplicationService userApplicationService;
 

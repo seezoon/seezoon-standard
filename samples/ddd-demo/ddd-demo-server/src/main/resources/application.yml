@@ -6,17 +6,14 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
   application:
-    name: fit-demo
+    name: ddd-demo
 server:
   port: 8080
   shutdown: graceful
   tomcat:
     basedir: .
-    connection-timeout: 6s
-    max-connections: 2000
-    accept-count: 200
+    connection-timeout: 60s
     threads:
-      min-spare: 10
       max: 2000
     accesslog:
       #pattern see https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging

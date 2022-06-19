@@ -16,6 +16,7 @@
         <module>ddd-demo-server</module>
         <module>ddd-demo-stub</module>
     </modules>
+
     <dependencies>
         <!--contains junit 5-->
         <dependency>
@@ -24,4 +25,13 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.seezoon.demo</groupId>
+                <artifactId>ddd-demo-stub</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

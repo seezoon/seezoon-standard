@@ -1,0 +1,11 @@
+grpc:
+  server:
+    port: 9090
+    enable-keep-alive: true
+  client:
+    GLOBAL:
+      negotiation-type: plaintext
+      enable-keep-alive: true
+      shutdown-grace-period: 30s
+    helloService:
+      address: static://127.0.0.1:9090

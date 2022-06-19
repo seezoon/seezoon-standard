@@ -12,11 +12,11 @@ import com.seezoon.demo.application.sys.executor.AddUserCmdExe;
 import com.seezoon.demo.application.sys.executor.ModifyUserMobileCmdExe;
 import com.seezoon.demo.application.sys.executor.QryUserByIdExe;
 import com.seezoon.demo.application.sys.executor.QryUserPageExe;
+
 import lombok.RequiredArgsConstructor;
 
 /**
- * 用户相关应用层服务
- * 职责：应用层中的服务可以组合领域中的行为，也可以跨聚合调用(领域中的分包)
+ * 用户相关应用层服务 职责：应用层中的服务可以组合领域中的行为，也可以跨聚合调用(领域中的分包)
  */
 @ApplicationService
 @RequiredArgsConstructor

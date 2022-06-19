@@ -117,54 +117,40 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <!-- setting 中配置账号  -->
-            <!-- 部署中心库  mvn clean deploy -P ossrh -->
-            <id>ossrh</id>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
-            <build>
-                <plugins>
-                    <!-- Gpg Signature -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <!-- 自动发布后release 不然还要去手动点close->release -->
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+    <repositories>
+        <repository>
+            <id>seezoon</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-release-kTlKqf</url>
+        </repository>
+        <repository>
+            <id>seezoon-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-snapshot-o2yCML</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>seezoon</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-release-kTlKqf</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>seezoon-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-snapshot-o2yCML</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!-- 部署相关 这里可以使用阿里云免费的 -->
+    <distributionManagement>
+        <repository>
+            <id>seezoon</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-release-kTlKqf</url>
+        </repository>
+        <snapshotRepository>
+            <id>seezoon-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2050382-snapshot-o2yCML</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
     <licenses>
         <license>

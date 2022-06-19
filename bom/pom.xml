@@ -20,8 +20,11 @@
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <!-- grpc -->
         <grpc.version>1.47.0</grpc.version>
+        <grpc.starter.version>2.13.1.RELEASE</grpc.starter.version>
         <protoc.version>3.21.1</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
+        <brave-instrumentation-grpc.version>5.13.9</brave-instrumentation-grpc.version>
+
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
         <!-- mybatis -->
         <mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
@@ -53,12 +56,28 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- grpc  -->
             <dependency>
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-bom</artifactId>
                 <version>${grpc.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-server-spring-boot-starter</artifactId>
+                <version>${grpc.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-client-spring-boot-starter</artifactId>
+                <version>${grpc.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-instrumentation-grpc</artifactId>
+                <version>${brave-instrumentation-grpc.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

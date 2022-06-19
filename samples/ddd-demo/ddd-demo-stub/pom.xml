@@ -11,7 +11,28 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ddd-demo-stub</artifactId>
     <name>${project.artifactId}</name>
-    <description>适合自动生成代码，或者远程调用的桩代码</description>
+    <description>适合自动生成代码，或者远程调用的桩代码，或者需要部署给其他模块依赖的</description>
 
+    <dependencies>
+        <!--  grpc 需要-->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-stub</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-protobuf</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

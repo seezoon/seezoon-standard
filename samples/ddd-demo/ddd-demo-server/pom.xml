@@ -13,11 +13,25 @@
     <name>${project.artifactId}</name>
     <description>主程序</description>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 作为服务端时候 grpc -->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 作为客户端时候 grpc -->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
         </dependency>
         <!-- DB -->
         <dependency>
@@ -32,12 +46,28 @@
             <groupId>com.seezoon</groupId>
             <artifactId>ddd-spring-boot-starter</artifactId>
         </dependency>
+        <!-- 调用链 可选-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-instrumentation-grpc</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.seezoon.demo</groupId>
+            <artifactId>ddd-demo-stub</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <!-- 配置不打包到jar -->
             <plugin>
-                <!-- 配置不打包到jar -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
             </plugin>
@@ -46,6 +76,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
             </plugin>
+            <!-- 生成db 代码的，生成目录在target/seezoon-generated -->
             <plugin>
                 <groupId>com.seezoon.maven.plugins</groupId>
                 <artifactId>seezoon-generator-maven-plugin</artifactId>

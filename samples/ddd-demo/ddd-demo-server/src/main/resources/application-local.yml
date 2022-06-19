@@ -3,6 +3,7 @@ server:
   tomcat:
     accesslog:
       enabled: false
+    basedir: ""
 ---
 # DB
 spring:
