@@ -1,14 +1,17 @@
 package com.seezoon.maven.generator.io;
 
-import com.seezoon.maven.generator.constants.CodeTemplate;
-import com.seezoon.maven.generator.plan.TablePlan;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+
+import org.codehaus.plexus.util.FileUtils;
+
+import com.seezoon.maven.generator.constants.CodeTemplate;
+import com.seezoon.maven.generator.plan.TablePlan;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.codehaus.plexus.util.FileUtils;
 
 /**
  * 文件的方式生成
@@ -33,7 +36,6 @@ public class FileCodeGenerator implements CodeGenerator {
             });
         }
     }
-
 
     private void createSourceFile(TablePlan tablePlan, Path generatedFolderPath, CodeTemplate ct) {
         try {

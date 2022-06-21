@@ -6,9 +6,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.seezoon</groupId>
-        <artifactId>seezoon</artifactId>
+        <artifactId>bom</artifactId>
         <version>${revision}</version>
-        <relativePath>../seezoon/pom.xml</relativePath>
+        <relativePath>../bom/pom.xml</relativePath>
     </parent>
     <groupId>com.seezoon.maven.plugins</groupId>
     <artifactId>seezoon-generator-maven-plugin</artifactId>
@@ -26,6 +26,11 @@
         <maven-project.version>2.2.1</maven-project.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>

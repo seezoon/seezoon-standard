@@ -153,19 +153,33 @@
                         </excludes>
                     </configuration>
                 </plugin>
-                <!-- 适合多模块的server, 打包成结构化的包 -->
+                <!-- 打包成结构化的包 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${maven-assembly-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.seezoon</groupId>
+                            <artifactId>build</artifactId>
+                            <version>${revision}</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
                         <attach>false</attach>
                         <appendAssemblyId>false</appendAssemblyId>
-                        <finalName>${project.parent.artifactId}</finalName>
-                        <outputDirectory>${project.parent.build.directory}</outputDirectory>
+                        <finalName>${project.artifactId}</finalName>
+                        <outputDirectory>${project.build.directory}</outputDirectory>
+                        <!-- 自定义的descriptor com.seezoon:build , 默认找classpath下assemblies 目录的文件-->
+                        <descriptorRefs>
+                            <descriptorRef>seezoon</descriptorRef>
+                        </descriptorRefs>
+                        <!-- 可以指定特定配置文件，这样就不需要引入com.seezoon:build -->
+                        <!--
                         <descriptors>
                             <descriptor>${project.basedir}/build/assembly/assembly.xml</descriptor>
                         </descriptors>
+                        -->
                     </configuration>
                     <executions>
                         <execution>

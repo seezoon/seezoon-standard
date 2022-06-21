@@ -7,8 +7,7 @@ public class UserContextLoader {
 
     private static final UserContext instance = load();
 
-    private UserContextLoader() {
-    }
+    private UserContextLoader() {}
 
     private static UserContext load() {
         ServiceLoader<UserContext> serviceLoader = ServiceLoader.load(UserContext.class);

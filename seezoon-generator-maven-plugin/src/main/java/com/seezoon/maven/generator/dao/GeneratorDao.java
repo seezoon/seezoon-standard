@@ -1,13 +1,14 @@
 package com.seezoon.maven.generator.dao;
 
-import com.seezoon.maven.generator.dto.db.DbPk;
-import com.seezoon.maven.generator.dto.db.DbTable;
-import com.seezoon.maven.generator.dto.db.DbTableColumn;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import com.seezoon.maven.generator.dto.db.DbPk;
+import com.seezoon.maven.generator.dto.db.DbTable;
+import com.seezoon.maven.generator.dto.db.DbTableColumn;
 
 /**
  * 获取表信息DAO

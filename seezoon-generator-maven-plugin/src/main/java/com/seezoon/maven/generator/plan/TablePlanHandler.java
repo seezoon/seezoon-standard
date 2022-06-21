@@ -1,8 +1,9 @@
 package com.seezoon.maven.generator.plan;
 
+import java.util.List;
+
 import com.seezoon.maven.generator.dto.db.DbTable;
 import com.seezoon.maven.generator.dto.db.DbTableColumn;
-import java.util.List;
 
 /**
  *

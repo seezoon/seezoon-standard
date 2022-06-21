@@ -22,6 +22,12 @@
     </properties>
 
     <dependencies>
+        <!-- 打包部署需要-->
+        <dependency>
+            <artifactId>build</artifactId>
+            <groupId>com.seezoon</groupId>
+            <version>${revision}</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

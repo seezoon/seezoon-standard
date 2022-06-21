@@ -38,6 +38,7 @@
         <module>samples</module>
         <module>seezoon-generator-maven-plugin</module>
         <module>archetypes</module>
+        <module>build</module>
     </modules>
 
     <build>

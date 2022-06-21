@@ -1,12 +1,14 @@
 package com.seezoon.mybatis.repository.sort;
 
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.util.Assert;
+
 import com.google.common.base.Splitter;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.seezoon.mybatis.repository.sort.annotation.SortField;
-import java.util.List;
-import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.util.Assert;
 
 /**
  * @author hdf
@@ -26,7 +28,7 @@ public class SortFieldMapping {
     public static void regiest(Class clazz) {
         String className = clazz.getName();
         if (!SORT_FIELD_MAPPING_CONTAINER.containsRow(className)) {
-            SortField sortFieldAnnotation = (SortField) clazz.getDeclaredAnnotation(SortField.class);
+            SortField sortFieldAnnotation = (SortField)clazz.getDeclaredAnnotation(SortField.class);
             if (null != sortFieldAnnotation) {
                 String[] value = sortFieldAnnotation.value();
                 if (ArrayUtils.isEmpty(value)) {

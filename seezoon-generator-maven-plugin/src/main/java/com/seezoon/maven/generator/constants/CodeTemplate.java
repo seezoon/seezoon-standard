@@ -10,22 +10,21 @@ public enum CodeTemplate {
     SQL_MAPPER("sql.xml.tpl", "${baseSqlMapperPath}/mappings/${moduleName}", "${className}Mapper.xml"),
 
     PO("po.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/po",
-            "${className}PO.java"),
+        "${className}PO.java"),
 
     PO_CONDITION("po_condition.java.tpl",
-            "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/po",
-            "${className}POCondition.java"),
+        "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/po",
+        "${className}POCondition.java"),
 
     MAPPER("mapper.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/mapper",
-            "${className}Mapper.java"),
-
+        "${className}Mapper.java"),
 
     REPOSITORY("repository.java.tpl",
-            "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository",
-            "${className}Repository.java"),
+        "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository",
+        "${className}Repository.java"),
 
     CONTROLLER("controller.java.tpl", "src/main/java/${baseControllerPackage?replace('.','/')}/${moduleName}/web",
-            "${className}Controller.java"),
+        "${className}Controller.java"),
 
     ;
 
@@ -41,7 +40,6 @@ public enum CodeTemplate {
         this.path = path;
         this.fileName = fileName;
     }
-
 
     public String tplName() {
         return tplName;

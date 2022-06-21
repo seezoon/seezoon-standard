@@ -1,7 +1,7 @@
 package com.seezoon.maven.generator.plan;
 
-
 import com.seezoon.maven.generator.constants.db.ColumnDataType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

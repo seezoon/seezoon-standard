@@ -1,10 +1,11 @@
 package com.seezoon.maven.generator.io;
 
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 
 public class FreeMarkerRender {
 
@@ -18,12 +19,9 @@ public class FreeMarkerRender {
     }
 
     /**
-     * @param name
-     *            相对路径下的模板
-     * @param data
-     *            数据
-     * @param out
-     *            输出流
+     * @param name 相对路径下的模板
+     * @param data 数据
+     * @param out 输出流
      */
     public static void renderTemplate(String name, Object data, Writer out) {
         try {
@@ -37,10 +35,8 @@ public class FreeMarkerRender {
     /**
      * 获取渲染后的文本
      *
-     * @param name
-     *            相对路径下的模板
-     * @param data
-     *            数据
+     * @param name 相对路径下的模板
+     * @param data 数据
      */
     public static String renderTemplate(String name, Object data) {
         String result = null;
@@ -57,8 +53,7 @@ public class FreeMarkerRender {
     /**
      * 模板内容
      *
-     * @param name
-     *            相对路径下的模板
+     * @param name 相对路径下的模板
      */
     public static String readTemplate(String name) {
         try {

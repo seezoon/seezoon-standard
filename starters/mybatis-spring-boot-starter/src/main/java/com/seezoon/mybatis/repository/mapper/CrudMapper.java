@@ -1,10 +1,12 @@
 package com.seezoon.mybatis.repository.mapper;
 
-import com.seezoon.mybatis.repository.po.AbstractPOQueryCondition;
-import com.seezoon.mybatis.repository.po.BasePO;
 import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.seezoon.mybatis.repository.po.AbstractPOQueryCondition;
+import com.seezoon.mybatis.repository.po.BasePO;
 
 /**
  * 包含基本CRUD定义，DAO 完成基础字段验证

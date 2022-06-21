@@ -22,9 +22,8 @@
 ### 分层职责
 
 ```aidl
-ddd-demo
-├── conf # 项目执行打包后生成要发布的配置
-├── ddd-demo-server # server程序
+parent
+├── server # server程序
 │   ├── application # 应用层:负责组合、流程编排、安全认证、权限校验、事务控制、发送或订阅领域事件等;
 │   │   ├── convertor # 负责将应用层参数转换为持久化对象、或者实体、值对象
 │   │   ├── dto # 应用层数据传输对象，存放接口出参和入参
@@ -45,7 +44,7 @@ ddd-demo
 │       ├── error # 错误码
 │       ├── exception # 异常处理
 │       └── utils # 工具类
-└── ddd-demo-stub # trpc 自动生成的桩代码
+└── stub # trpc 自动生成的桩代码
 ```
 
 ### 分层依赖

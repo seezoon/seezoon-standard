@@ -2,10 +2,10 @@
         xmlns="http://maven.apache.org/POM/4.0.0"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>seezoon</artifactId>
+        <artifactId>bom</artifactId>
         <groupId>com.seezoon</groupId>
         <version>${revision}</version>
-        <relativePath>../seezoon/pom.xml</relativePath>
+        <relativePath>../bom/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,4 +18,12 @@
         <module>ddd-spring-boot-starter</module>
         <module>mybatis-spring-boot-starter</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

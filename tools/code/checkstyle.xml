@@ -60,7 +60,9 @@
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
         <module name="AvoidStarImport"/>
+        <!--  seezoon
         <module name="OneTopLevelClass"/>
+        -->
         <module name="NoLineWrap">
             <property name="tokens" value="PACKAGE_DEF, IMPORT, STATIC_IMPORT"/>
         </module>
@@ -181,11 +183,13 @@
             <message key="name.invalidPattern"
                     value="Type name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        <!-- seezoon
         <module name="MemberName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
                     value="Member name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        -->
         <module name="ParameterName">
             <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
             <message key="name.invalidPattern"
@@ -211,11 +215,13 @@
             <message key="name.invalidPattern"
                     value="Pattern variable name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        <!-- seezoon
         <module name="ClassTypeParameterName">
             <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
             <message key="name.invalidPattern"
                     value="Class type name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        -->
         <module name="RecordComponentName">
             <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
             <message key="name.invalidPattern"
@@ -231,11 +237,13 @@
             <message key="name.invalidPattern"
                     value="Method type name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        <!-- seezoon
         <module name="InterfaceTypeParameterName">
             <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
             <message key="name.invalidPattern"
                     value="Interface type name ''{0}'' must match pattern ''{1}''."/>
         </module>
+        -->
         <module name="NoFinalizer"/>
         <module name="GenericWhitespace">
             <message key="ws.followed"
@@ -257,13 +265,9 @@
             <property name="lineWrappingIndentation" value="4"/>
             <property name="arrayInitIndent" value="2"/>
             -->
-            <property name="basicOffset" value="4"/>
-            <property name="braceAdjustment" value="0"/>
-            <property name="caseIndent" value="4"/>
-            <property name="throwsIndent" value="8"/>
-            <property name="lineWrappingIndentation" value="8"/>
-            <property name="arrayInitIndent" value="4"/>
+
         </module>
+        <!-- seezoon
         <module name="AbbreviationAsWordInName">
             <property name="ignoreFinal" value="false"/>
             <property name="allowedAbbreviationLength" value="0"/>
@@ -272,15 +276,20 @@
                     PARAMETER_DEF, VARIABLE_DEF, METHOD_DEF, PATTERN_VARIABLE_DEF, RECORD_DEF,
                     RECORD_COMPONENT_DEF"/>
         </module>
+        -->
         <module name="NoWhitespaceBeforeCaseDefaultColon"/>
-        <module name="OverloadMethodsDeclarationOrder"/>
+        <!-- seezoon
+       <module name="OverloadMethodsDeclarationOrder"/>
+       -->
         <module name="VariableDeclarationUsageDistance"/>
+        <!-- seezoon
         <module name="CustomImportOrder">
             <property name="sortImportsInGroupAlphabetically" value="true"/>
             <property name="separateLineBetweenGroups" value="true"/>
             <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
             <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
         </module>
+        -->
         <module name="MethodParamPad">
             <property name="tokens"
                     value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,

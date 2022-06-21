@@ -1,11 +1,8 @@
 package com.seezoon.ddd.advisor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seezoon.ddd.annotation.ApplicationService;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
@@ -15,6 +12,12 @@ import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractPointcutAdvisor;
 import org.springframework.aop.support.StaticMethodMatcher;
 import org.springframework.aop.support.annotation.AnnotationClassFilter;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seezoon.ddd.annotation.ApplicationService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * advisor for application service. print param and result when log level debug enable
@@ -92,7 +95,7 @@ class ApplicationServiceAdvice implements MethodInterceptor {
                 log.debug("param:" + objectMapper.writeValueAsString(arg));
             }
         } catch (Exception e) {
-            //swallow it
+            // swallow it
             log.error("log reqeust error", e);
         }
     }
@@ -103,10 +106,10 @@ class ApplicationServiceAdvice implements MethodInterceptor {
         }
         try {
             long endTime = System.currentTimeMillis();
-            log.debug("end process cost : " + (endTime - startTime) + "ms, result : " + objectMapper.writeValueAsString(
-                    result));
+            log.debug("end process cost : " + (endTime - startTime) + "ms, result : "
+                + objectMapper.writeValueAsString(result));
         } catch (Exception e) {
-            //swallow it
+            // swallow it
             log.error("log response error", e);
         }
     }

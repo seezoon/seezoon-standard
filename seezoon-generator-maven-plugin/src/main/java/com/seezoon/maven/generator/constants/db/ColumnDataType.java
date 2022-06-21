@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.util.Assert;
 
 /**
@@ -71,7 +72,7 @@ public enum ColumnDataType {
     public static ColumnDataType parse(String dbType) {
         ColumnDataType columnDataType = COLUMN_DATA_TYPES.get(dbType);
         Assert.isTrue(null != columnDataType,
-                String.format("dbType[%s] not support,pls supplement enum ColumnDataType", dbType));
+            String.format("dbType[%s] not support,pls supplement enum ColumnDataType", dbType));
         return columnDataType;
     }
 

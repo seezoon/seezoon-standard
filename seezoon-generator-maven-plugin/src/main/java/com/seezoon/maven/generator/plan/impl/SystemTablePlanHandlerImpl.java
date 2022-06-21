@@ -1,5 +1,13 @@
 package com.seezoon.maven.generator.plan.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.CaseUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.seezoon.maven.generator.constants.InputType;
 import com.seezoon.maven.generator.constants.QueryType;
 import com.seezoon.maven.generator.constants.TemplateType;
@@ -13,13 +21,6 @@ import com.seezoon.maven.generator.plan.ColumnPlan;
 import com.seezoon.maven.generator.plan.PkPlan;
 import com.seezoon.maven.generator.plan.TablePlan;
 import com.seezoon.maven.generator.plan.TablePlanHandler;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.CaseUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 /**
  * 系统默认生成方案
@@ -27,7 +28,6 @@ import org.slf4j.LoggerFactory;
  * @author hdf
  */
 public class SystemTablePlanHandlerImpl implements TablePlanHandler {
-
 
     private static final Logger logger = LoggerFactory.getLogger(SystemTablePlanHandlerImpl.class);
     /**
@@ -51,12 +51,11 @@ public class SystemTablePlanHandlerImpl implements TablePlanHandler {
     private String baseControllerPackage;
 
     public SystemTablePlanHandlerImpl(String baseSqlMapperPath, String baseRepositoryPackage,
-            String baseControllerPackage) {
+        String baseControllerPackage) {
         this.baseSqlMapperPath = baseSqlMapperPath;
         this.baseRepositoryPackage = baseRepositoryPackage;
         this.baseControllerPackage = baseControllerPackage;
     }
-
 
     @Override
     public TablePlan generate(DbTable dbTable, List<DbTableColumn> dbTableColumns) {
@@ -128,8 +127,8 @@ public class SystemTablePlanHandlerImpl implements TablePlanHandler {
                     columnPlan.setInputType(InputType.DATETIME);
                 }
                 // 有索引的
-                if ((ColumnKey.MUL.equals(columnPlan.getColumnKey()) || ColumnKey.UNI
-                        .equals(columnPlan.getColumnKey()))) {
+                if ((ColumnKey.MUL.equals(columnPlan.getColumnKey())
+                    || ColumnKey.UNI.equals(columnPlan.getColumnKey()))) {
                     columnPlan.setSearch(true);
                     columnPlan.setSortable(true);
                     columnPlan.setQueryType(QueryType.EQUAL);
@@ -140,11 +139,11 @@ public class SystemTablePlanHandlerImpl implements TablePlanHandler {
             if (columnPlan.getColumnKey().equals(ColumnKey.PRI)) {
                 if (null != tablePlan.getPkPlan()) {
                     logger.warn("table[{}] must have only one primary key,otherwise generator select first primary key",
-                            tablePlan.getTableName());
+                        tablePlan.getTableName());
                 } else {
                     tablePlan.setPkPlan(new PkPlan(columnPlan.getDbColumnName(), columnPlan.getJavaFieldName(),
-                            columnPlan.getDataType(), DefaultColumns.id.name().equals(columnPlan.getJavaFieldName()),
-                            ColumnExtra.auto_increment.equals(columnPlan.getExtra())));
+                        columnPlan.getDataType(), DefaultColumns.id.name().equals(columnPlan.getJavaFieldName()),
+                        ColumnExtra.auto_increment.equals(columnPlan.getExtra())));
                     // 自增不可插入
                     columnPlan.setInsert(!tablePlan.getPkPlan().isAutoIncrement());
                     // 主键也不可更新
@@ -156,7 +155,7 @@ public class SystemTablePlanHandlerImpl implements TablePlanHandler {
         // 一定要有主键
         if (null == tablePlan.getPkPlan()) {
             throw new IllegalArgumentException(
-                    String.format("table[%s] must have primary key", tablePlan.getTableName()));
+                String.format("table[%s] must have primary key", tablePlan.getTableName()));
         }
         return columnPlans;
     }

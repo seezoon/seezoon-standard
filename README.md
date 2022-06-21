@@ -21,6 +21,7 @@ seezoon-standard  父工程
 ├── archetypes 定制的maven骨架，快速生成企业制定的基础工程
 │   └── application-archetype 开箱即用工程骨架
 ├── bom 管理企业内部开源框架依赖及自身组件库版本
+├── build 打包部署，包含运维脚本，maven打包自动解压使用
 ├── samples 编写适合企业的样例程序，通过该程序，也可以制作脚手架（Maven Archetype)
 │   └── application-archetype-demo 开箱即用工程骨架工程示例
 ├── seezoon 企业级父POM，通过升级该版本可以升级依赖，公共组件等
@@ -32,7 +33,6 @@ seezoon-standard  父工程
 │   ├── code 代码相关工具  
 │   │   └── checkstyle.xml 代码检查，早期建议可以不关注，按大公司的标准会增加太多工作量
 │   │   └── eclipse-codestyle.xml 代码格式化（强制）
-│   ├── maintain_script  运维脚本
 │   └── maven
 │       └── settings.xml 制定全员通用的文件
 └── pom.xml 包含基础maven仓库，部署仓库等

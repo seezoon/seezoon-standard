@@ -1,11 +1,14 @@
 package com.seezoon.mybatis.repository.po;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.seezoon.mybatis.repository.constants.Constants;
 import java.time.LocalDateTime;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.seezoon.mybatis.repository.constants.Constants;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,24 +40,20 @@ public class BasePO<PK> {
     @Min(-128)
     private Integer status = Constants.NORMAL;
     /**
-     * 保存方法自动处理
-     * 创建人
+     * 保存方法自动处理 创建人
      */
     private Object createBy;
     /**
-     * 保存方法自动处理
-     * 创建时间
+     * 保存方法自动处理 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
     /**
-     * 更新方法自动处理
-     * 更新人
+     * 更新方法自动处理 更新人
      */
     private Object updateBy;
     /**
-     * 更新方法自动处理
-     * 更新时间
+     * 更新方法自动处理 更新时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;

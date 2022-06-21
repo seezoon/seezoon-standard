@@ -1,15 +1,17 @@
 package com.seezoon.maven.generator.plan;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.base.CaseFormat;
 import com.seezoon.maven.generator.constants.InputType;
 import com.seezoon.maven.generator.constants.QueryType;
 import com.seezoon.maven.generator.constants.db.ColumnDataType;
 import com.seezoon.maven.generator.constants.db.ColumnExtra;
 import com.seezoon.maven.generator.constants.db.ColumnKey;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * 代码生成每列的生成方案
@@ -21,8 +23,8 @@ import org.apache.commons.lang3.ArrayUtils;
 @Builder
 public class ColumnPlan implements Comparable<ColumnPlan> {
 
-    private static final String[] DEFAULT_COLUMNS = {"id", "status", "create_by", "create_time", "update_by",
-            "update_time", "remarks"};
+    private static final String[] DEFAULT_COLUMNS =
+        {"id", "status", "create_by", "create_time", "update_by", "update_time", "remarks"};
     /**
      * DB 列名称
      */
@@ -112,10 +114,11 @@ public class ColumnPlan implements Comparable<ColumnPlan> {
     }
 
     public boolean isNumberType() {
-        return ArrayUtils.contains(new String[]{ColumnDataType.TINYINT.javaType(), ColumnDataType.INT.javaType(),
-                        ColumnDataType.INTEGER.javaType(), ColumnDataType.BIGINT.javaType(), ColumnDataType.DOUBLE.javaType(),
-                        ColumnDataType.FLOAT.javaType(), ColumnDataType.DECIMAL.javaType(), ColumnDataType.NUMERIC.javaType(),},
-                this.getDataType().javaType());
+        return ArrayUtils.contains(
+            new String[] {ColumnDataType.TINYINT.javaType(), ColumnDataType.INT.javaType(),
+                ColumnDataType.INTEGER.javaType(), ColumnDataType.BIGINT.javaType(), ColumnDataType.DOUBLE.javaType(),
+                ColumnDataType.FLOAT.javaType(), ColumnDataType.DECIMAL.javaType(), ColumnDataType.NUMERIC.javaType(),},
+            this.getDataType().javaType());
     }
 
     /**
@@ -133,7 +136,7 @@ public class ColumnPlan implements Comparable<ColumnPlan> {
     }
 
     public boolean isUniqueField() {
-        return ArrayUtils.contains(new ColumnKey[]{ColumnKey.UNI}, this.getColumnKey());
+        return ArrayUtils.contains(new ColumnKey[] {ColumnKey.UNI}, this.getColumnKey());
     }
 
     public String getUnderScoreFieldName() {

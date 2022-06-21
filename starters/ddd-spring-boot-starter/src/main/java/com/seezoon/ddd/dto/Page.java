@@ -12,8 +12,7 @@ public class Page<T> {
     private long total;
     private List<T> list;
 
-    public Page() {
-    }
+    public Page() {}
 
     public Page(List<T> list) {
         this.list = list;
@@ -39,6 +38,5 @@ public class Page<T> {
     public void setTotal(long total) {
         this.total = total;
     }
-
 
 }

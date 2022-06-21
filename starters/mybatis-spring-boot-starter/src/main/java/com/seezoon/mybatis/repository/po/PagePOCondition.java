@@ -1,8 +1,9 @@
 package com.seezoon.mybatis.repository.po;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.seezoon.mybatis.repository.sort.SortDirectionMapping;
 import com.seezoon.mybatis.repository.sort.SortFieldMapping;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 分页条件
@@ -17,8 +18,7 @@ public class PagePOCondition extends AbstractPOQueryCondition {
      */
     private int page = 1;
     /**
-     * 默认每页大小
-     * 每页大小(分页请求必传)
+     * 默认每页大小 每页大小(分页请求必传)
      */
     private int pageSize = 20;
 
@@ -31,7 +31,6 @@ public class PagePOCondition extends AbstractPOQueryCondition {
      * 排序顺序
      */
     private String sortOrder;
-
 
     public PagePOCondition() {
         SortFieldMapping.regiest(this.getClass());

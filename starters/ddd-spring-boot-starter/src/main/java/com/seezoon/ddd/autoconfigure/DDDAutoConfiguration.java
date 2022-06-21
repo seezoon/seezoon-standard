@@ -1,14 +1,16 @@
 package com.seezoon.ddd.autoconfigure;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seezoon.ddd.advisor.ApplicationServiceAdvisor;
-import com.seezoon.ddd.context.SpringContextHolder;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.TargetSource;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seezoon.ddd.advisor.ApplicationServiceAdvisor;
+import com.seezoon.ddd.context.SpringContextHolder;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration(proxyBeanMethods = false)
 @Slf4j
@@ -24,7 +26,7 @@ public class DDDAutoConfiguration {
      * @return
      */
     @Bean
-    //@Role(BeanDefinition.ROLE_INFRASTRUCTURE)
+    // @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
     public ApplicationServiceAdvisor applicationServiceAdvisor(ObjectMapper objectMapper) {
         if (null == objectMapper) {
             objectMapper = new ObjectMapper();
