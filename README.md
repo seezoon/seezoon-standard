@@ -38,3 +38,18 @@ seezoon-standard  父工程
 └── pom.xml 包含基础maven仓库，部署仓库等
 ```
 
+## 快速体验
+
+```shell
+# com.your.groupid 按需替换
+# your-artifactid 按需替换
+mvn archetype:generate \
+    -DarchetypeGroupId=com.seezoon \
+    -DarchetypeArtifactId=application-archetype \
+    -DarchetypeVersion=1.0.0-SNAPSHOT \
+    -DgroupId=com.your.groupid \
+    -DartifactId=your-artifactid \
+    -Dversion=1.0.0-SNAPSHOT \
+    -DinteractiveMode=false
+    
+```

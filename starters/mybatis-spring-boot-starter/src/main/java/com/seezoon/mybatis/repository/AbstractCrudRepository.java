@@ -176,6 +176,8 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
      * @return
      */
     public int delete(@NotEmpty PK... pks) {
-        return this.d.deleteByPrimaryKey(pks);
+        int affectedRows = this.d.deleteByPrimaryKey(pks);
+        Assert.isTrue(affectedRows <= pks.length, "affected rows expect:" + pks.length + ",actually:" + affectedRows);
+        return affectedRows;
     }
 }

@@ -49,6 +49,7 @@
         <fileSet encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
+            <include>**/*.sh</include>
             <include>**/*.yml</include>
           </includes>
         </fileSet>
@@ -56,18 +57,6 @@
           <directory>src/test/java</directory>
           <includes>
             <include>**/*.java</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory>build/assembly</directory>
-          <includes>
-            <include>**/*.xml</include>
-          </includes>
-        </fileSet>
-        <fileSet encoding="UTF-8">
-          <directory>build/assembly</directory>
-          <includes>
-            <include>**/*.sh</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">

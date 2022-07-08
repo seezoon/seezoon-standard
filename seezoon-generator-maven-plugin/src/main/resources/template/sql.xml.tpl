@@ -93,7 +93,7 @@
             </#if>
         </#list>
         </set>
-        where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}}
+        where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}} limit 2
     </update>
     <update id="updateByPrimaryKey" parameterType="${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}">
         update ${tableName} ${defaultTableAlias} set
@@ -104,6 +104,6 @@
             <#assign firstItem = false>
             </#if>
         </#list>
-        where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}}
+        where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}} limit 2
     </update>
 </mapper>
