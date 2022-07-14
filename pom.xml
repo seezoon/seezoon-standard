@@ -16,6 +16,7 @@
     <properties>
         <!-- mvn -Drevision=1.0.0 clean package -->
         <revision>1.0.0-SNAPSHOT</revision>
+        <seezoon.revision>${revision}</seezoon.revision>
         <!-- 编译相关 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>11</java.version>

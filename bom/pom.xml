@@ -162,7 +162,7 @@
                         <dependency>
                             <groupId>com.seezoon</groupId>
                             <artifactId>build</artifactId>
-                            <version>${revision}</version>
+                            <version>${seezoon.revision}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
@@ -255,7 +255,7 @@
                 <plugin>
                     <groupId>com.seezoon.maven.plugins</groupId>
                     <artifactId>seezoon-generator-maven-plugin</artifactId>
-                    <version>${revision}</version>
+                    <version>${seezoon.revision}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
