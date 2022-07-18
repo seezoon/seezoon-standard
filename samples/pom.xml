@@ -19,6 +19,17 @@
     <description>some samples</description>
 
     <properties>
+        <maven-archetype-plugin.version>3.2.1</maven-archetype-plugin.version>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
+    <build>
+        <plugins>
+            <!-- mvn archetype:create-from-project -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>${maven-archetype-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>

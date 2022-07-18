@@ -33,13 +33,4 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <!-- mvn archetype:create-from-project-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-archetype-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

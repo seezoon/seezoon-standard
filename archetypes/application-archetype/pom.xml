@@ -13,5 +13,4 @@
     <packaging>maven-archetype</packaging>
     <name>${project.artifactId}</name>
 
-
 </project>
