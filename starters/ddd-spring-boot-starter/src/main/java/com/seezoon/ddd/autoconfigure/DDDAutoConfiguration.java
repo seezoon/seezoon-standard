@@ -1,5 +1,7 @@
 package com.seezoon.ddd.autoconfigure;
 
+import java.util.Optional;
+
 import org.springframework.aop.TargetSource;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
@@ -22,15 +24,12 @@ public class DDDAutoConfiguration {
      * ，需要@Role(BeanDefinition.ROLE_INFRASTRUCTURE) 才可以
      * {@link AbstractAdvisorAutoProxyCreator#getAdvicesAndAdvisorsForBean(Class, String, TargetSource)}
      *
-     * @param objectMapper
+     * @param optionalObjectMapper
      * @return
      */
     @Bean
     // @Role(BeanDefinition.ROLE_INFRASTRUCTURE)
-    public ApplicationServiceAdvisor applicationServiceAdvisor(ObjectMapper objectMapper) {
-        if (null == objectMapper) {
-            objectMapper = new ObjectMapper();
-        }
-        return new ApplicationServiceAdvisor(objectMapper);
+    public ApplicationServiceAdvisor applicationServiceAdvisor(Optional<ObjectMapper> optionalObjectMapper) {
+        return new ApplicationServiceAdvisor(optionalObjectMapper.orElse(new ObjectMapper()));
     }
 }
