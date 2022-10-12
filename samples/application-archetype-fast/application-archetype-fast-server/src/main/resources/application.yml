@@ -7,6 +7,11 @@ spring:
     timeout-per-shutdown-phase: 30s
   application:
     name: seezoon-demo
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      file-size-threshold: 10MB
+      max-request-size: 100MB
   mvc:
     servlet:
       # 避免首次慢
