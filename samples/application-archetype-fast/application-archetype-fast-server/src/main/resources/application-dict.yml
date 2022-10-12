@@ -1,0 +1,7 @@
+seezoon:
+  dict:
+    form-status:
+      - code: 1
+        name: 是
+      - code: 0
+        name: 否

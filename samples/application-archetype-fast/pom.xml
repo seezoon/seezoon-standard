@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>samples</artifactId>
+        <groupId>com.seezoon</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.seezoon</groupId>
+    <artifactId>application-archetype-fast</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <dependencies>
+        <!--contains junit 5-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.seezoon</groupId>
+                <artifactId>application-archetype-fast-stub</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <modules>
+        <module>application-archetype-fast-server</module>
+        <module>application-archetype-fast-stub</module>
+    </modules>
+
+</project>

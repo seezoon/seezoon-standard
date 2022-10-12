@@ -1,0 +1,5 @@
+seezoon:
+  app:
+    secret-key: 12345678123456781234567812345678
+  upload:
+    directory: /tmp

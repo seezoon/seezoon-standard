@@ -13,6 +13,7 @@
     <name>${project.artifactId}</name>
     <modules>
         <module>application-archetype-demo</module>
+        <module>application-archetype-fast</module>
     </modules>
 
     <packaging>pom</packaging>
