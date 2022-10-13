@@ -35,3 +35,16 @@ springdoc:
   api-docs:
     # 默认是true,线上关闭
     enabled: true
+#feign
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 2000
+        read-timeout: 6000
+  httpclient:
+    connection-timeout: 2000
+    max-connections: 500
+    max-connections-per-route: 500
+    time-to-live: 2
+    time-to-live-unit: minutes
