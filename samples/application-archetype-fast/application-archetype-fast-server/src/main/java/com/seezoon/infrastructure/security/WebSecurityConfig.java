@@ -30,7 +30,7 @@ public class WebSecurityConfig {
     private static final String PUBLIC_ANT_PATH = "/public/**";
     private static final String LOGIN_ANT_PATH = "/login/**";
     private static final String[] STATIC_ANT_PATH =
-        {"/static/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"};
+        {"/pages/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtTokenFilter jwtTokenFilter) throws Exception {
