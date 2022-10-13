@@ -14,6 +14,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.ddd.exception.BizException;
@@ -70,9 +71,21 @@ public class WebExceptionAdvice {
         return Response.error(e.getcode(), e.getMessage());
     }
 
+    /**
+     * 无权限时候使用
+     * 
+     * @param response
+     * @param e
+     */
     @ExceptionHandler(AccessDeniedException.class)
     public void accessDeniedException(HttpServletResponse response, AccessDeniedException e) {
         response.setStatus(HttpStatus.FORBIDDEN.value());
+    }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public Response uploadException(MaxUploadSizeExceededException e) {
+        log.error("upload exceptionL{}", e.getMessage());
+        return Response.error(ErrorCode.FILE_SIZE_INVALID.code(), ErrorCode.FILE_SIZE_INVALID.msg());
     }
 
     /**

@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import com.seezoon.application.authentication.SecurityUtils;
 import com.seezoon.application.sys.convertor.UserConvertor;
 import com.seezoon.application.sys.dto.QryUserById;
 import com.seezoon.application.sys.dto.clientobject.UserCO;
@@ -38,7 +37,6 @@ public class QryUserByIdExe {
         SysUserPO sysUserPO = sysUserRepository.find(qry.getUserId());
         Assertion.notNull(sysUserPO, "user id [" + qry.getUserId() + "] not exists");
         UserCO userCO = UserConvertor.INSTANCE.toCO(sysUserPO);
-        Integer userId = SecurityUtils.getUserId();
         return Response.success(userCO);
     }
 

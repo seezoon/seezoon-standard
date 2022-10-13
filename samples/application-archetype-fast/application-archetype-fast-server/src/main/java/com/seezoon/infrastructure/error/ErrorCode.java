@@ -12,6 +12,8 @@ public enum ErrorCode implements ErrorDefinition {
 
     FILE_NOT_EXISTS("FILE_NOT_EXISTS", "文件不存在"),
 
+    FILE_SIZE_INVALID("FILE_SIZE_INVALID", "文件大小不合法"),
+
     FILE_UPLOAD_FAILED("FILE_UPLOAD_FAILED", "文件上传失败"),
 
     /**
