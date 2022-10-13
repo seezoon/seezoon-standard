@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
@@ -28,6 +29,8 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
     private static final String PUBLIC_ANT_PATH = "/public/**";
     private static final String LOGIN_ANT_PATH = "/login/**";
+    private static final String[] STATIC_ANT_PATH =
+        {"/static/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtTokenFilter jwtTokenFilter) throws Exception {
@@ -54,10 +57,16 @@ public class WebSecurityConfig {
         http.authorizeRequests()
             .antMatchers(PUBLIC_ANT_PATH,LOGIN_ANT_PATH).permitAll()
             .anyRequest().authenticated();
-
         http.addFilterBefore(jwtTokenFilter,UsernamePasswordAuthenticationFilter.class);
+
+        
         // @formatter:on
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().antMatchers(STATIC_ANT_PATH);
     }
 
     @Bean

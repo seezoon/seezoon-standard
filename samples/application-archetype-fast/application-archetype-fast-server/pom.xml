@@ -9,13 +9,14 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>application-archetype-fast-server</artifactId>
     <name>${project.artifactId}</name>
-    <description>主程序</description>
+    <description>main server</description>
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
         <jwt.version>0.11.5</jwt.version>
-        <easyexcel.version>3.1.0</easyexcel.version>
-        <thumbnailator.version>0.4.14</thumbnailator.version>
+        <easyexcel.version>3.1.1</easyexcel.version>
+        <thumbnailator.version>0.4.17</thumbnailator.version>
+        <springdoc.version>1.6.11</springdoc.version>
     </properties>
 
     <dependencies>
@@ -91,6 +92,12 @@
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
+        </dependency>
+        <!-- https://springdoc.org/#getting-started -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
         </dependency>
         <!-- 图片 -->
         <dependency>

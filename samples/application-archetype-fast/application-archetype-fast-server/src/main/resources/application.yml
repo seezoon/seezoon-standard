@@ -28,3 +28,10 @@ server:
       #pattern see https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging
       enabled: true
       max-days: 2
+  compression:
+    # 默认关，io不是问题的话不需要打开
+    enabled: true
+springdoc:
+  api-docs:
+    # 默认是true,线上关闭
+    enabled: true

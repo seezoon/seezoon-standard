@@ -151,7 +151,7 @@ public class SeezoonProperties {
         // 缩放1 为不缩放 < 1
         private double iamgeScale = 1;
         // 上传目录
-        private String directory;
+        private String directory = "./upload";
 
     }
 }

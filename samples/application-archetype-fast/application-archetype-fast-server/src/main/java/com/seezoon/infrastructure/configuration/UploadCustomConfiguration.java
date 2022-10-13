@@ -1,6 +1,5 @@
 package com.seezoon.infrastructure.configuration;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +14,6 @@ import lombok.RequiredArgsConstructor;
  */
 @Configuration(proxyBeanMethods = false)
 @RequiredArgsConstructor
-@ConditionalOnProperty(name = "seezoon.upload.directory")
 public class UploadCustomConfiguration {
 
     @Bean
