@@ -85,7 +85,7 @@ public class JwtTokenProvider {
                 .deserializeJsonWith(new JacksonDeserializer(Maps.of(CLAIM_CUSTOM_KEY, JwtInfo.class).build()))
                 .setSigningKey(key).build().parseClaimsJws(token);
             return claimsJws;
-        } catch (Exception exception) {
+        } catch (Exception exception) { // 如果过期了还想做逻辑，可以抓ExpiredJwtException e
             log.error("validate jwt token, error:{}", exception.getMessage());
             return null;
         }
