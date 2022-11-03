@@ -2,6 +2,8 @@ package com.seezoon.application.authentication.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +20,7 @@ public class UsernamePasswordLoginCmd {
     @NotBlank
     private String username;
     @NotBlank
+    @Length(min = 6)
     private String password;
 
 }

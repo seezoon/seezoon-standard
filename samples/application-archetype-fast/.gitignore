@@ -28,7 +28,6 @@ target/
 *.diff
 *.patch
 *.tmp
-application.pid
 
 # system ignore
 .DS_Store
@@ -40,3 +39,5 @@ license-list
 
 # global registry center
 .tmp
+node_modules
+dist
