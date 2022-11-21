@@ -13,7 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import com.seezoon.application.sys.dto.UploadCmd;
 import com.seezoon.application.sys.dto.clientobject.FileCO;
 import com.seezoon.ddd.dto.Response;
-import com.seezoon.domain.sys.service.FileDomainService;
+import com.seezoon.domain.sys.service.FileService;
 import com.seezoon.infrastructure.properties.SeezoonProperties;
 import com.seezoon.infrastructure.properties.SeezoonProperties.UploadProperties;
 
@@ -29,12 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 @Validated
 public class UploadCmdExe {
 
-    private final FileDomainService fileDomainService;
+    private final FileService fileService;
     private final SeezoonProperties seezoonProperties;
 
     public Response<FileCO> execute(@NotNull @Valid UploadCmd cmd) {
         UploadProperties upload = seezoonProperties.getUpload();
-        String relativePath = fileDomainService.upload(cmd.getOriginalFilename(), cmd.getContentType(), cmd.getIn());
+        String relativePath = fileService.upload(cmd.getOriginalFilename(), cmd.getContentType(), cmd.getIn());
         return Response
             .success(new FileCO(upload.getUrlPrefix() + relativePath, relativePath, cmd.getOriginalFilename()));
     }
@@ -43,8 +43,7 @@ public class UploadCmdExe {
         UploadProperties upload = seezoonProperties.getUpload();
         List<FileCO> data = new ArrayList<>();
         for (UploadCmd cmd : cmds) {
-            String relativePath =
-                fileDomainService.upload(cmd.getOriginalFilename(), cmd.getContentType(), cmd.getIn());
+            String relativePath = fileService.upload(cmd.getOriginalFilename(), cmd.getContentType(), cmd.getIn());
             data.add(new FileCO(upload.getUrlPrefix() + relativePath, relativePath, cmd.getOriginalFilename()));
         }
         return Response.success(data);

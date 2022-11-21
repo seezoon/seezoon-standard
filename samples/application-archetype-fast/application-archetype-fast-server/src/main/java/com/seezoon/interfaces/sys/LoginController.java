@@ -10,6 +10,8 @@ import com.seezoon.application.authentication.dto.UsernamePasswordLoginCmd;
 import com.seezoon.application.authentication.dto.clientobject.AuthorizationTokenCO;
 import com.seezoon.ddd.dto.Response;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -19,13 +21,15 @@ import lombok.RequiredArgsConstructor;
  * @date 2022/10/12 20:50
  */
 @RestController
-@RequestMapping("/login/")
+@RequestMapping("/login")
 @RequiredArgsConstructor
+@Tag(name = "登录", description = "可提供多种登录方式")
 public class LoginController {
 
     private final LoginApplicationService loginApplicationService;
 
     @PostMapping("/username_password")
+    @Operation(summary = "账号密码登录", description = "返回token，后续请求携带header，Authorization:Bearer token")
     public Response<AuthorizationTokenCO> usernamePasswordLogin(@RequestBody UsernamePasswordLoginCmd cmd) {
         return loginApplicationService.usernamePasswordLogin(cmd);
     }

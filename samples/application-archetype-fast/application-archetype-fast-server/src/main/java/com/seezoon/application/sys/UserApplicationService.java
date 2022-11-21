@@ -1,17 +1,21 @@
 package com.seezoon.application.sys;
 
+import com.seezoon.application.sys.dto.AddUserCmd;
+import com.seezoon.application.sys.dto.ChangeUserPwdCmd;
+import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
+import com.seezoon.application.sys.dto.ModifyUserCmd;
+import com.seezoon.application.sys.dto.UserByIdQry;
+import com.seezoon.application.sys.dto.UserPageQry;
+import com.seezoon.application.sys.dto.clientobject.UserCO;
+import com.seezoon.application.sys.executor.AddUserCmdExe;
+import com.seezoon.application.sys.executor.ChangeUserPwdCmdExe;
+import com.seezoon.application.sys.executor.DeleteUserByIdCmdExe;
+import com.seezoon.application.sys.executor.ModifyUserCmdExe;
+import com.seezoon.application.sys.executor.UserByIdQryExe;
+import com.seezoon.application.sys.executor.UserPageQryExe;
 import com.seezoon.ddd.annotation.ApplicationService;
 import com.seezoon.ddd.dto.Page;
 import com.seezoon.ddd.dto.Response;
-import com.seezoon.application.sys.dto.AddUserCmd;
-import com.seezoon.application.sys.dto.ModifyUserMobileCmd;
-import com.seezoon.application.sys.dto.QryUserById;
-import com.seezoon.application.sys.dto.QryUserPage;
-import com.seezoon.application.sys.dto.clientobject.UserCO;
-import com.seezoon.application.sys.executor.AddUserCmdExe;
-import com.seezoon.application.sys.executor.ModifyUserMobileCmdExe;
-import com.seezoon.application.sys.executor.QryUserByIdExe;
-import com.seezoon.application.sys.executor.QryUserPageExe;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,24 +27,34 @@ import lombok.RequiredArgsConstructor;
 public class UserApplicationService {
 
     private final AddUserCmdExe addUserCmdExe;
-    private final QryUserByIdExe qryUserByIdExe;
-    private final ModifyUserMobileCmdExe modifyUserMobileCmdExe;
-    private final QryUserPageExe qryUserPageExe;
+    private final UserByIdQryExe userByIdQryExe;
+    private final ModifyUserCmdExe modifyUserCmdExe;
+    private final UserPageQryExe userPageQryExe;
+    private final DeleteUserByIdCmdExe deleteUserByIdCmdExe;
+    private final ChangeUserPwdCmdExe changeUserPwdCmdExe;
+
+    public Response deleteUserById(DeleteUserByIdCmd cmd) {
+        return deleteUserByIdCmdExe.execute(cmd);
+    }
+
+    public Response changeUserPwd(ChangeUserPwdCmd cmd) {
+        return changeUserPwdCmdExe.execute(cmd);
+    }
 
     public Response addUser(AddUserCmd cmd) {
         return addUserCmdExe.execute(cmd);
     }
 
-    public Response<UserCO> qryUserById(QryUserById qry) {
-        return qryUserByIdExe.execute(qry);
+    public Response<UserCO> qryUserById(UserByIdQry qry) {
+        return userByIdQryExe.execute(qry);
     }
 
-    public Response modifyUserMobile(ModifyUserMobileCmd cmd) {
-        return modifyUserMobileCmdExe.execute(cmd);
+    public Response modifyUser(ModifyUserCmd cmd) {
+        return modifyUserCmdExe.execute(cmd);
     }
 
-    public Response<Page<UserCO>> qryUserPage(QryUserPage qry) {
-        return qryUserPageExe.execute(qry);
+    public Response<Page<UserCO>> qryUserPage(UserPageQry qry) {
+        return userPageQryExe.execute(qry);
     }
 
 }

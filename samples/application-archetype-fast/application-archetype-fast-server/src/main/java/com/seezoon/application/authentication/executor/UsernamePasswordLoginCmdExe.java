@@ -11,7 +11,7 @@ import com.seezoon.application.authentication.dto.clientobject.AuthorizationToke
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.domain.sys.repository.SysUserRepository;
 import com.seezoon.domain.sys.repository.po.SysUserPO;
-import com.seezoon.domain.sys.service.LoginTokenDomainService;
+import com.seezoon.domain.sys.service.LoginTokenService;
 import com.seezoon.infrastructure.error.ErrorCode;
 import com.seezoon.infrastructure.properties.SeezoonProperties;
 import com.seezoon.infrastructure.security.PasswordEncoder;
@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Validated
 public class UsernamePasswordLoginCmdExe {
 
-    private final LoginTokenDomainService loginTokenDomainService;
+    private final LoginTokenService loginTokenService;
     private final SysUserRepository sysUserRepository;
     private final SeezoonProperties seezoonProperties;
 
@@ -42,7 +42,7 @@ public class UsernamePasswordLoginCmdExe {
         }
         boolean matches = PasswordEncoder.matches(cmd.getPassword(), sysUserPO.getPassword());
         if (matches) {
-            String token = loginTokenDomainService.generateToken(sysUserPO.getUserId(),
+            String token = loginTokenService.generateToken(sysUserPO.getUserId(),
                 seezoonProperties.getApp().getLoginExpire().getSeconds());
             return Response.success(new AuthorizationTokenCO(token));
         } else {

@@ -12,6 +12,7 @@ import com.seezoon.mybatis.repository.spi.UserContext;
 public class UserContextImpl implements UserContext {
     @Override
     public Object getId() {
-        return SecurityUtils.getUserId();
+        Integer userId = SecurityUtils.getUserId();
+        return null != userId ? userId : SecurityUtils.SUPER_ADMIN_USER_ID;
     }
 }

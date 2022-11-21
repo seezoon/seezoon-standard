@@ -16,6 +16,9 @@ spring:
     servlet:
       # 避免首次慢
       load-on-startup: 1
+  autoconfigure:
+    # 打印默认密码问题，实际没有采用内置的认证体系
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
 server:
   port: 8080
   shutdown: graceful

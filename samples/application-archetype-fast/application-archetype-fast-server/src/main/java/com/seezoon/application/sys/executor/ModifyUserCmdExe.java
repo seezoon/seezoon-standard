@@ -7,33 +7,33 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import com.seezoon.application.sys.convertor.UserConvertor;
-import com.seezoon.application.sys.dto.AddUserCmd;
+import com.seezoon.application.sys.dto.ModifyUserCmd;
 import com.seezoon.ddd.dto.Response;
-import com.seezoon.domain.sys.service.AddUserService;
-import com.seezoon.domain.sys.valueobject.AddUserVO;
+import com.seezoon.domain.sys.service.ModifyUserService;
+import com.seezoon.domain.sys.valueobject.ModifyUserVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 添加用户
+ * 修改用户
  */
 @Component
 @Slf4j
 @RequiredArgsConstructor
 @Validated
-public class AddUserCmdExe {
+public class ModifyUserCmdExe {
 
-    private final AddUserService addUserService;
+    private final ModifyUserService modifyUserService;
 
     /**
      * 入口函数
      *
      * @param cmd
      */
-    public Response execute(@NotNull @Valid AddUserCmd cmd) {
-        AddUserVO vo = UserConvertor.INSTANCE.toVO(cmd);
-        addUserService.add(vo);
+    public Response execute(@NotNull @Valid ModifyUserCmd cmd) {
+        ModifyUserVO vo = UserConvertor.INSTANCE.toVO(cmd);
+        modifyUserService.modify(vo);
         return Response.success();
     }
 }

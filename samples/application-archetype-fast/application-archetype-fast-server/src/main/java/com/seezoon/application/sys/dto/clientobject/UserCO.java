@@ -1,8 +1,10 @@
 package com.seezoon.application.sys.dto.clientobject;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.seezoon.domain.sys.valueobject.UserStatus;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.seezoon.domain.sys.valueobject.UserStatusVO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,7 +46,7 @@ public class UserCO {
     private String email;
 
     /**
-     * 状态 {@link UserStatus}
+     * 状态 {@link UserStatusVO}
      */
     private Integer status;
     /**

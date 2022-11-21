@@ -41,7 +41,9 @@ public class WebExceptionAdvice {
     @ExceptionHandler({MissingServletRequestParameterException.class, ValidationException.class,
         MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class, BindException.class})
     public Response parameterInvalidException(Exception e) {
-        return Response.error(ErrorCode.PARAM_INVALID.code(), e.getMessage());
+        log.error("parameter invalid exception", e);
+        return Response.error(ErrorCode.PARAM_INVALID.code(),
+            String.format(ErrorCode.PARAM_INVALID.msg(), e.getMessage()));
     }
 
     /**
@@ -52,12 +54,15 @@ public class WebExceptionAdvice {
      */
     @ExceptionHandler({IllegalArgumentException.class})
     public Response illegalArgumentException(IllegalArgumentException e) {
-        return Response.error(ErrorCode.PARAM_INVALID.code(), e.getMessage());
+        log.error("illegal argument exception", e);
+        return Response.error(ErrorCode.PARAM_INVALID.code(),
+            String.format(ErrorCode.PARAM_INVALID.msg(), e.getMessage()));
     }
 
     @ExceptionHandler({SQLException.class, TransactionException.class})
     public Response sqlException(Exception e) {
-        return Response.error(ErrorCode.SQL_ERROR.code(), e.getMessage());
+        log.error("sql exception", e);
+        return Response.error(ErrorCode.SQL_ERROR.code(), String.format(ErrorCode.SQL_ERROR.msg(), e.getMessage()));
     }
 
     @ExceptionHandler(BizException.class)
@@ -67,7 +72,6 @@ public class WebExceptionAdvice {
 
     @ExceptionHandler(SysException.class)
     public Response sysException(SysException e) {
-        log.error("sys exception", e);
         return Response.error(e.getcode(), e.getMessage());
     }
 
@@ -84,7 +88,7 @@ public class WebExceptionAdvice {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public Response uploadException(MaxUploadSizeExceededException e) {
-        log.error("upload exceptionL{}", e.getMessage());
+        log.error("upload exception {}", e.getMessage());
         return Response.error(ErrorCode.FILE_SIZE_INVALID.code(), ErrorCode.FILE_SIZE_INVALID.msg());
     }
 
@@ -97,6 +101,6 @@ public class WebExceptionAdvice {
     @ExceptionHandler(Exception.class)
     public Response exception(Exception e) {
         log.error("unspecified exception", e);
-        return Response.error(ErrorCode.UNSPECIFIED.code(), e.getMessage());
+        return Response.error(ErrorCode.UNKOWN.code(), String.format(ErrorCode.UNKOWN.msg(), e.getMessage()));
     }
 }

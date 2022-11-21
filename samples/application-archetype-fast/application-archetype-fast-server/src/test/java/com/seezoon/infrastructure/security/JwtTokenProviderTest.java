@@ -18,6 +18,7 @@ class JwtTokenProviderTest {
         JwtTokenProvider jwtTokenProvider =
             new JwtTokenProvider("12345678123456781234567812345678", new ObjectMapper());
         String token = jwtTokenProvider.generateToken(new JwtInfo("u", 1, "c"), Duration.ofHours(2).getSeconds());
+        System.out.println(token);
         JwtInfo info = jwtTokenProvider.getInfo(token);
         Assertions.assertEquals(info.getUserName(), "u");
     }

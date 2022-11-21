@@ -39,7 +39,7 @@ public class Response<T> {
     }
 
     public boolean isSuccess() {
-        return DEFAULT_SUCCESS_CODE == code;
+        return DEFAULT_SUCCESS_CODE.equals(code);
     }
 
     public String getCode() {

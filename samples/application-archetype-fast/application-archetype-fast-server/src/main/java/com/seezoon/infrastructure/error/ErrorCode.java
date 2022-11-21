@@ -2,13 +2,16 @@ package com.seezoon.infrastructure.error;
 
 import com.seezoon.ddd.exception.ErrorDefinition;
 
+/**
+ * 如需细化错误，请在该文件中维护对外错误，小项目一般不需要
+ */
 public enum ErrorCode implements ErrorDefinition {
 
-    UNSPECIFIED("UNSPECIFIED", "unspecified error"),
+    UNKOWN("UNKOWN", "系统错误：%s"),
 
-    PARAM_INVALID("PARAM_INVALID", "param invalid"),
+    SQL_ERROR("SQL_ERROR", "数据库操作异常：%s"),
 
-    SQL_ERROR("SQL_ERROR", "sql error"),
+    PARAM_INVALID("PARAM_INVALID", "参数错误：%s"),
 
     FILE_NOT_EXISTS("FILE_NOT_EXISTS", "文件不存在"),
 
@@ -20,6 +23,8 @@ public enum ErrorCode implements ErrorDefinition {
      * 业务错误
      */
     USER_NOT_EXISTS("USER_NOT_EXISTS", "用户不存在"),
+
+    USER_NAME_EXISTS("USER_NAME_EXISTS", "用户名 %s 已存在"),
 
     USER_PASSWD_WRONG("USER_PASSWD_WRONG", "用户名或密码错误"),
 

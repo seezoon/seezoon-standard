@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- * 业务使用需要加上，扫码例如
+ * 业务使用需要加上，扫描例如
  *
  * @MapperScan(basePackages = "com.seezoon.dao.modules.*",markerInterface = BaseMapper.class)
  */

@@ -1,4 +1,4 @@
-package com.seezoon.application.sys.dto;
+package com.seezoon.domain.sys.valueobject;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -7,45 +7,39 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 新增用户入参
+ * 添加用户值对象
+ * 
+ * @author dfenghuang
+ * @date 2022/11/21 12:39
  */
 @Getter
 @Setter
-public class AddUserCmd {
-
+public class AddUserVO {
     /**
      * 登录名
      */
     @NotBlank
-    @Size(max = 50)
     private String username;
     /**
      * 姓名
      */
     @NotBlank
-    @Size(max = 50)
     private String name;
     /**
      * 密码
      */
-    @NotBlank
-    @Size(max = 100)
+    @Size(min = 6)
     private String password;
     /**
      * 手机
      */
-    @Size(max = 20)
     private String mobile;
-
     /**
      * 头像
      */
-    @Size(max = 100)
     private String photo;
-
     /**
      * 邮件
      */
-    @Size(max = 50)
     private String email;
 }

@@ -7,7 +7,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.seezoon.mybatis.repository.constants.Constants;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +37,7 @@ public class BasePO<PK> {
      */
     @Max(127)
     @Min(-128)
-    private Integer status = Constants.NORMAL;
+    private Integer status;
     /**
      * 保存方法自动处理 创建人
      */

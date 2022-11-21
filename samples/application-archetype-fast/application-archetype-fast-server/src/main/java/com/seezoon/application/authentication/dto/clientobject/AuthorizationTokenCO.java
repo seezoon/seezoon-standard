@@ -1,5 +1,6 @@
 package com.seezoon.application.authentication.dto.clientobject;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,6 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class AuthorizationTokenCO {
+    @Schema(title = "登录凭证，添加header Authorization:Bearer token")
     private final String token;
-    private String desc = "Authorization:Bearer token";
 }
