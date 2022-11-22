@@ -16,7 +16,7 @@ export default [
         meta: {title: '用户管理'},
       },
       {
-        path: 'user/:userId',
+        path: 'user/detail',
         name: 'SysUserDetail',
         component: () => import('@/pages/sys/user/Detail.vue'),
         meta: {title: '用户详情', hidden: true},

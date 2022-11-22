@@ -36,7 +36,12 @@
     @sort-change="sortChange"
   >
     <template #name="{row}">
-      <t-link theme="primary" @click="this.$router.push(`/sys/user/${row.userId}`)">{{ row.name }}</t-link>
+      <t-link theme="primary" @click="this.$router.push({
+      path:'/sys/user/detail',
+      query:{
+        userId: row.userId
+      } })">{{ row.name }}
+      </t-link>
     </template>
     <template #status="{ row }">
       <t-tag v-if="row.status === RECORD_STATUS.enable.value" theme="success" variant="light">启用</t-tag>
