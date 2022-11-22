@@ -1,0 +1,3 @@
+# decrypt sensitive
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.seezoon.infrastructure.configuration.SensitiveEnvironmentPostProcessor
