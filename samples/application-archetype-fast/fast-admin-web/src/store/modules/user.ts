@@ -1,14 +1,18 @@
 import {defineStore} from 'pinia';
-import {getStorageToken, removeStorageToken, TOKEN_NAME} from '@/config/global';
+import {removeStorageToken, TOKEN_NAME} from '@/config/global';
 import {store, usePermissionStore} from '@/store';
+import {request} from '@/utils/request';
 
 const InitUserInfo = {
-  roles: [],
+  name: undefined,
+  username: undefined,
+  photo: undefined,
+  roles: undefined,
 };
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    token: getStorageToken(), // 默认token不走权限
+    // token: getStorageToken(), 这里用了localStorage 持久化 不安全
     userInfo: InitUserInfo,
   }),
   getters: {
@@ -17,45 +21,37 @@ export const useUserStore = defineStore('user', {
     },
   },
   actions: {
-    login(token: string, rememberMe: boolean): number {
-      this.token = token;
+    login(token: string, rememberMe: boolean) {
+      localStorage.clear();
+      sessionStorage.clear();
+      //this.token = token;
       if (rememberMe) {
         localStorage.setItem(TOKEN_NAME, token);
       } else {
         sessionStorage.setItem(TOKEN_NAME, token);
       }
-      return 1;
     },
     async getUserInfo() {
-      const mockRemoteUserInfo = async (token: string) => {
-        if (token === 'main_token') {
-          return {
-            name: 'td_main',
-            roles: ['all'],
-          };
-        }
-        return {
-          name: 'td_dev',
-          roles: ['UserIndex', 'DashboardBase', 'login'],
-        };
-      };
-
-      const res = await mockRemoteUserInfo(this.token);
-
-      this.userInfo = res;
+      const {info, roles, permissions} = await request.get({
+        url: '/sys/user/personal'
+      });
+      this.userInfo = info;
+      this.userInfo.roles = roles.concat(permissions);
     },
     async logout() {
       removeStorageToken();
-      this.token = '';
+      // this.token = '';
       this.userInfo = InitUserInfo;
+      localStorage.clear();
+      sessionStorage.clear();
     },
     async removeToken() {
-      this.token = '';
+      // this.token = '';
     },
   },
   persist: {
     afterRestore: (ctx) => {
-      if (ctx.store.roles && ctx.store.roles.length > 0) {
+      if (ctx.store.roles) {
         const permissionStore = usePermissionStore();
         permissionStore.initRoutes(ctx.store.roles);
       }

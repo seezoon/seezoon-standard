@@ -74,8 +74,7 @@ export default {
         url: '/login/username_password',
         data: this.formData
       }).then(({token}) => {
-        let i = userStore.login(token, this.formData.rememberMe);
-        console.log(i)
+        userStore.login(token, this.formData.rememberMe);
         //  debugger
         // console.log(this.$route.query?.redirect ? this.$route.query?.redirect : '/dashboard/base')
         router.push(this.$route.query?.redirect ? this.$route.query?.redirect : '/dashboard/base')

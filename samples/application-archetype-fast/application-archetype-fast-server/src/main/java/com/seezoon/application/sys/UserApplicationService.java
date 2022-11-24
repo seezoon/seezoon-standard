@@ -6,11 +6,13 @@ import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
 import com.seezoon.application.sys.dto.ModifyUserCmd;
 import com.seezoon.application.sys.dto.UserByIdQry;
 import com.seezoon.application.sys.dto.UserPageQry;
+import com.seezoon.application.sys.dto.clientobject.PersonalInfoCO;
 import com.seezoon.application.sys.dto.clientobject.UserCO;
 import com.seezoon.application.sys.executor.AddUserCmdExe;
 import com.seezoon.application.sys.executor.ChangeUserPwdCmdExe;
 import com.seezoon.application.sys.executor.DeleteUserByIdCmdExe;
 import com.seezoon.application.sys.executor.ModifyUserCmdExe;
+import com.seezoon.application.sys.executor.PersonalInfoQryExe;
 import com.seezoon.application.sys.executor.UserByIdQryExe;
 import com.seezoon.application.sys.executor.UserPageQryExe;
 import com.seezoon.ddd.annotation.ApplicationService;
@@ -33,6 +35,8 @@ public class UserApplicationService {
     private final DeleteUserByIdCmdExe deleteUserByIdCmdExe;
     private final ChangeUserPwdCmdExe changeUserPwdCmdExe;
 
+    private final PersonalInfoQryExe personalInfoQryExe;
+
     public Response deleteUserById(DeleteUserByIdCmd cmd) {
         return deleteUserByIdCmdExe.execute(cmd);
     }
@@ -47,6 +51,10 @@ public class UserApplicationService {
 
     public Response<UserCO> qryUserById(UserByIdQry qry) {
         return userByIdQryExe.execute(qry);
+    }
+
+    public Response<PersonalInfoCO> qryPersonalInfo() {
+        return personalInfoQryExe.execute();
     }
 
     public Response modifyUser(ModifyUserCmd cmd) {

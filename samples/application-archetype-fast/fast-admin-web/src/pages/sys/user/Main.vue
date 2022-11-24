@@ -35,6 +35,14 @@
     @page-change="pageChange"
     @sort-change="sortChange"
   >
+    <template #expandedRow="{ row }">
+      <div>
+        <p><b>姓名：</b>{{ row.name }}</p>
+        <p><b>用户名：</b>{{ row.username }}</p>
+        <p><b>手机号：</b>{{ row.mobile }}</p>
+        <p><b>邮箱：</b>{{ row.email }}</p>
+      </div>
+    </template>
     <template #name="{row}">
       <t-link theme="primary" @click="this.$router.push({
       path:'/sys/user/detail',

@@ -131,7 +131,7 @@ const sendCode = () => {
 const onSubmit = async ({validateResult}) => {
   if (validateResult === true) {
     try {
-      await userStore.login(formData.value);
+      // await userStore.login(formData.value);
 
       MessagePlugin.success('登陆成功');
       router.push({

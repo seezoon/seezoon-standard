@@ -1,7 +1,7 @@
 <template>
-  <div class="page-wrapper">
+  <t-card title="用户管理">
     <s-main/>
-  </div>
+  </t-card>
 </template>
 <script setup>
 import SMain from './Main.vue'</script>

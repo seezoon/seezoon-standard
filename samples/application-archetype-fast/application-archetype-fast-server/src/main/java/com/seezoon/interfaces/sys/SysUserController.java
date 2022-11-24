@@ -14,6 +14,7 @@ import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
 import com.seezoon.application.sys.dto.ModifyUserCmd;
 import com.seezoon.application.sys.dto.UserByIdQry;
 import com.seezoon.application.sys.dto.UserPageQry;
+import com.seezoon.application.sys.dto.clientobject.PersonalInfoCO;
 import com.seezoon.application.sys.dto.clientobject.UserCO;
 import com.seezoon.ddd.dto.Page;
 import com.seezoon.ddd.dto.Response;
@@ -57,6 +58,16 @@ public class SysUserController {
     public Response<UserCO> qryUserById(@PathVariable Integer userId) {
         UserByIdQry qry = new UserByIdQry(userId);
         return userApplicationService.qryUserById(qry);
+    }
+
+    /**
+     * 查询个人信息
+     * 
+     * @return
+     */
+    @GetMapping("/personal")
+    public Response<PersonalInfoCO> qryPersonalInfo() {
+        return userApplicationService.qryPersonalInfo();
     }
 
     /**

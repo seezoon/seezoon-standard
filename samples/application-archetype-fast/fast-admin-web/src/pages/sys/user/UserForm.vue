@@ -80,10 +80,10 @@
               label="状态" name="status">
               <t-radio-group v-model="data.status">
                 <t-radio :value="RECORD_STATUS.enable.value">
-                  <span class="success">{{ RECORD_STATUS.enable.text }}</span>
+                  <span class="status success">{{ RECORD_STATUS.enable.text }}</span>
                 </t-radio>
                 <t-radio :value="RECORD_STATUS.disable.value">
-                  <span class="fail">{{ RECORD_STATUS.disable.text }}</span>
+                  <span class="status error">{{ RECORD_STATUS.disable.text }}</span>
                 </t-radio>
               </t-radio-group>
             </t-form-item>

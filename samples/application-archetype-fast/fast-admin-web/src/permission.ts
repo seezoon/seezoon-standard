@@ -3,6 +3,7 @@ import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
 import {getPermissionStore, getUserStore} from '@/store';
 import router from '@/router';
+import {getStorageToken} from '@/config/global';
 
 NProgress.configure({showSpinner: false});
 
@@ -13,7 +14,8 @@ router.beforeEach(async (to, from, next) => {
   const permissionStore = getPermissionStore();
   const {whiteListRouters} = permissionStore;
 
-  const {token} = userStore;
+  //const {token} = userStore;
+  const token = getStorageToken();
   if (token) {
     if (to.path === '/login') {
       next();
@@ -21,8 +23,7 @@ router.beforeEach(async (to, from, next) => {
     }
 
     const {roles} = userStore;
-
-    if (roles && roles.length > 0) {
+    if (roles) {
       next();
     } else {
       try {
