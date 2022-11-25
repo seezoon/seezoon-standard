@@ -41,6 +41,7 @@
         <p><b>用户名：</b>{{ row.username }}</p>
         <p><b>手机号：</b>{{ row.mobile }}</p>
         <p><b>邮箱：</b>{{ row.email }}</p>
+        <p><b>邮箱：</b>{{ getDictName('form-status', row.status) }}</p>
       </div>
     </template>
     <template #name="{row}">
@@ -81,6 +82,7 @@
 import {RECORD_STATUS} from "@/constants";
 import ChangePwd from './ChangePwd.vue'
 import UserForm from './UserForm.vue'
+import {getDictName} from "@/utils/dict";
 
 const columns = [{
   colKey: 'name',

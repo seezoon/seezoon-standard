@@ -2,7 +2,7 @@ spring:
   profiles:
     # 环境标识，本机开发环境有意义,如果觉得污染,可以IDEA 传入--spring.profiles.active=local
     active: local
-    include: db,dict,seezoon
+    include: db,dict
   lifecycle:
     timeout-per-shutdown-phase: 30s
   application:
@@ -33,10 +33,6 @@ server:
       max-days: 2
   compression:
     # 默认关，io不是问题的话不需要打开
-    enabled: true
-springdoc:
-  api-docs:
-    # 默认是true,线上关闭
     enabled: true
 #feign
 feign:

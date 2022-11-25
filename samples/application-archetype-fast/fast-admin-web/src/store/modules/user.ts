@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import {removeStorageToken, TOKEN_NAME} from '@/config/global';
-import {store, usePermissionStore} from '@/store';
+import {store} from '@/store';
 import {request} from '@/utils/request';
 
 const InitUserInfo = {
@@ -21,7 +21,7 @@ export const useUserStore = defineStore('user', {
     },
   },
   actions: {
-    login(token: string, rememberMe: boolean) {
+    async login(token: string, rememberMe: boolean) {
       localStorage.clear();
       sessionStorage.clear();
       //this.token = token;
@@ -49,14 +49,15 @@ export const useUserStore = defineStore('user', {
       // this.token = '';
     },
   },
-  persist: {
-    afterRestore: (ctx) => {
-      if (ctx.store.roles) {
-        const permissionStore = usePermissionStore();
-        permissionStore.initRoutes(ctx.store.roles);
-      }
-    },
-  },
+  /* persist: {
+     afterRestore: (ctx) => {
+       if (ctx.store.roles) {
+         const permissionStore = usePermissionStore(store);
+         permissionStore.initRoutes(ctx.store.roles);
+       }
+     },
+   },*/
+  persist: false
 });
 
 export function getUserStore() {

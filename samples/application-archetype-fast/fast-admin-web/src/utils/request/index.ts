@@ -129,28 +129,37 @@ const transform: AxiosTransform = {
 
   // 响应错误处理
   responseInterceptorsCatch: (error: any) => {
-    let status = error?.response?.status;
-    if (status === 401) {
-      MessagePlugin.warning("请重新登录");
-      router.push(`/login?redirect=${router.currentRoute.value.fullPath}`);
-      return Promise.reject(error);
-    } else if (status === 403) {
-      MessagePlugin.error("没有权限，请联系管理员");
-      return Promise.reject(error);
-    } else if (status === 500) {
-      MessagePlugin.error("服务器错误，请联系管理员");
-      return Promise.reject(error);
+    const checkStatus = function () {
+      const {code, message} = error || {}
+      if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
+        MessagePlugin.error("请求超时请重试");
+        return;
+      }
+      let status = error?.response?.status;
+      if (status === 401) {
+        MessagePlugin.warning("请重新登录");
+        router.push(`/login?redirect=${router.currentRoute.value.fullPath}`);
+      } else if (status === 403) {
+        MessagePlugin.error("没有权限，请联系管理员");
+      } else if (status === 404) {
+        MessagePlugin.error("请求地址错误");
+      } else if (status === 500) {
+        MessagePlugin.error("服务器错误，请刷新重试");
+      } else {
+        MessagePlugin.error(error.message);
+      }
     }
+
     const {config} = error;
     if (!config || !config.requestOptions.retry) {
-      MessagePlugin.error(error.message);
+      checkStatus()
       return Promise.reject(error);
     }
 
     config.retryCount = config.retryCount || 0;
 
     if (config.retryCount >= config.requestOptions.retry.count) {
-      MessagePlugin.error(error.message);
+      checkStatus()
       return Promise.reject(error);
     }
 

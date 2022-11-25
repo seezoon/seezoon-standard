@@ -1,7 +1,7 @@
 seezoon:
-  dict:
+  dicts:
     form-status:
-      - code: 1
-        name: 是
-      - code: 0
-        name: 否
+      - value: 1
+        label: 启用
+      - value: 0
+        label: 停用

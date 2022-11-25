@@ -1,7 +1,7 @@
 import {MessagePlugin} from 'tdesign-vue-next';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import {getPermissionStore, getUserStore} from '@/store';
+import {getPermissionStore, getSystemStore, getUserStore} from '@/store';
 import router from '@/router';
 import {getStorageToken} from '@/config/global';
 
@@ -12,6 +12,7 @@ router.beforeEach(async (to, from, next) => {
 
   const userStore = getUserStore();
   const permissionStore = getPermissionStore();
+  const systemStore = getSystemStore();
   const {whiteListRouters} = permissionStore;
 
   //const {token} = userStore;
@@ -21,7 +22,16 @@ router.beforeEach(async (to, from, next) => {
       next();
       return;
     }
-
+    // 加载资源
+    if (!systemStore.inited) {
+      try {
+        await systemStore.getSystemInfo();
+      } catch (e) {
+        console.error(e)
+        NProgress.done();
+        return;
+      }
+    }
     const {roles} = userStore;
     if (roles) {
       next();

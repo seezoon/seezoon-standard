@@ -21,7 +21,7 @@ public class SeezoonProperties {
     public static final String PREFIX = "seezoon";
 
     private AppProperties app = new AppProperties();
-    private Map<String, List<Dict>> dict = Collections.emptyMap();
+    private Map<String, List<Dict>> dicts = Collections.emptyMap();
     private HttpProperties http = new HttpProperties();
     private AsyncProperties async = new AsyncProperties();
     private CorsProperties cors = new CorsProperties();
@@ -47,8 +47,8 @@ public class SeezoonProperties {
     @Getter
     @Setter
     public static class Dict {
-        private int code;
-        private String name;
+        private Object value;
+        private String label;
         private boolean disabled;
     }
 
