@@ -32,8 +32,12 @@
       <t-col :span="2" class="s-item">
         <div class="s-item-title">状态</div>
         <div class="s-item-detail">
-          <t-tag v-if="detail.status === RECORD_STATUS.enable.value" theme="success" variant="light">启用</t-tag>
-          <t-tag v-if="detail.status === RECORD_STATUS.disable.value" theme="danger" variant="light">停用</t-tag>
+          <t-tag v-if="detail.status === RECORD_STATUS.enable.value" theme="success" variant="light">
+            {{ RECORD_STATUS.enable.text }}
+          </t-tag>
+          <t-tag v-if="detail.status === RECORD_STATUS.disable.value" theme="danger" variant="light">
+            {{ RECORD_STATUS.disable.text }}
+          </t-tag>
         </div>
       </t-col>
     </t-row>

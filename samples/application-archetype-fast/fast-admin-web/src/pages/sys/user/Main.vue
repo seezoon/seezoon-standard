@@ -53,8 +53,12 @@
       </t-link>
     </template>
     <template #status="{ row }">
-      <t-tag v-if="row.status === RECORD_STATUS.enable.value" theme="success" variant="light">启用</t-tag>
-      <t-tag v-if="row.status === RECORD_STATUS.disable.value" theme="danger" variant="light">停用</t-tag>
+      <t-tag v-if="row.status === RECORD_STATUS.enable.value" theme="success" variant="light">
+        {{ RECORD_STATUS.enable.text }}
+      </t-tag>
+      <t-tag v-if="row.status === RECORD_STATUS.disable.value" theme="danger" variant="light">
+        {{ RECORD_STATUS.disable.text }}
+      </t-tag>
     </template>
     <template #op="{row}">
       <a class="t-button-link" @click="this.$refs.userForm.open('修改用户',row.userId)">修改</a>
