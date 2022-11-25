@@ -41,7 +41,7 @@
         <p><b>用户名：</b>{{ row.username }}</p>
         <p><b>手机号：</b>{{ row.mobile }}</p>
         <p><b>邮箱：</b>{{ row.email }}</p>
-        <p><b>邮箱：</b>{{ getDictName('form-status', row.status) }}</p>
+        <p><b>状态：</b>{{ getDictName('form-status', row.status) }}</p>
       </div>
     </template>
     <template #name="{row}">

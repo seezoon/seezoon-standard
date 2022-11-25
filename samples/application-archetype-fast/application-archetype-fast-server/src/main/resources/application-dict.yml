@@ -1,6 +1,6 @@
 seezoon:
   dicts:
-    form-status:
+    record-status:
       - value: 1
         label: 启用
       - value: 0
