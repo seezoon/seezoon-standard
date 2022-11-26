@@ -41,11 +41,11 @@
             </template>
             <t-button class="header-user-btn" theme="default" variant="text">
               <template #icon>
-                <!--                <t-icon class="header-user-avatar" name="user-circle"/>-->
-                <t-avatar image="https://tdesign.gtimg.com/site/avatar.jpg" size="small"/>
+                <t-icon v-if="!userStore.userInfo.photo" class="header-user-avatar" name="user-circle"/>
+                <t-avatar v-else :image="userStore.userInfo.photo" size="small"/>
               </template>
               <div class="header-user-account">
-                <span class="s-ml-5">Seezoon</span>
+                <span class="s-ml-5">{{ userStore.userInfo.username }}</span>
                 <t-icon name="chevron-down"/>
               </div>
             </t-button>
@@ -64,7 +64,7 @@
 <script lang="ts" setup>
 import {computed, PropType} from 'vue';
 import {useRouter} from 'vue-router';
-import {useSettingStore} from '@/store';
+import {useSettingStore, useUserStore} from '@/store';
 import {getActive} from '@/router';
 import {prefix} from '@/config/global';
 import LogoFull from '@/assets/assets-logo-full.svg?component';
@@ -104,6 +104,7 @@ const props = defineProps({
 
 const router = useRouter();
 const settingStore = useSettingStore();
+const userStore = useUserStore();
 
 const toggleSettingPanel = () => {
   settingStore.updateConfig({

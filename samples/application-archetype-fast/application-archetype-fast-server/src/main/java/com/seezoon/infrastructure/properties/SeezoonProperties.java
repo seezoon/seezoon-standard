@@ -139,7 +139,10 @@ public class SeezoonProperties {
     @Getter
     @Setter
     public static class UploadProperties {
-
+        /**
+         * 上传域名，一般和当前web部署域名一致，如https://xxx.com
+         */
+        private String uploadUrl;
         /**
          * 可访问的网址前缀，如https://xxx.com
          */

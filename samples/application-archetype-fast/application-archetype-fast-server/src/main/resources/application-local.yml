@@ -15,4 +15,6 @@ seezoon:
   app:
     secret-key: 5V%XWz5v#7TWVM,^55+,wEluTIeq6yRH
   upload:
-    url-prefix: https://www.seezoon.com
+    url-prefix: http://localhost:4173
+    directory: /Users/huangdengfeng/Documents/personal/projects/seezoon/seezoon-standard/samples/application-archetype-fast/fast-admin-web/dist
+    upload-url: http://127.0.0.1:8080

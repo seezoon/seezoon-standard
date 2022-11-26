@@ -1,5 +1,5 @@
 // 合同状态枚举
-import {getDictName} from "@/utils/dict";
+import {getDictName} from "@/utils/param";
 
 // 排序
 export const SORT_ORDER = {

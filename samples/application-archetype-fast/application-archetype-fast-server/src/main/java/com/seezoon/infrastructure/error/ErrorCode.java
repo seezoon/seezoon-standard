@@ -22,11 +22,15 @@ public enum ErrorCode implements ErrorDefinition {
     /**
      * 业务错误
      */
+    SUPER_ADMIN_NOT_ALLOW_DELETE("SUPER_ADMIN_NOT_ALLOW_DELETE", "超级管理员不能删除"),
+
     USER_NOT_EXISTS("USER_NOT_EXISTS", "用户不存在"),
 
     USER_NAME_EXISTS("USER_NAME_EXISTS", "用户名 %s 已存在"),
 
     USER_PASSWD_WRONG("USER_PASSWD_WRONG", "用户名或密码错误"),
+
+    OLD_PASSWD_WRONG("OLD_PASSWD_WRONG", "原密码错误"),
 
     USER_AUTHORIZATION("USER_AUTHORIZATION_ERROR", "获取认证信息失败，请稍后重试"),
 

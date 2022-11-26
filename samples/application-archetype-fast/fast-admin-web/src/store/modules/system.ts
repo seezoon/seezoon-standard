@@ -3,6 +3,7 @@ import {request} from '@/utils/request';
 import store from "@/store";
 
 const SystemInfo = {
+  uploadUrl: undefined,
   fileUrlPrefix: undefined,
   dicts: undefined
 }

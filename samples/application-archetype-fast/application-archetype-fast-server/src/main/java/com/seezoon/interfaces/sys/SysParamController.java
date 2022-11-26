@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.seezoon.application.sys.SysParamApplicationService;
+import com.seezoon.application.sys.ParamApplicationService;
 import com.seezoon.application.sys.dto.clientobject.SystemInfoCO;
 import com.seezoon.ddd.dto.Response;
 
@@ -23,10 +23,10 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "系统参数", description = "管理系统参数，字典等")
 public class SysParamController {
 
-    private final SysParamApplicationService sysParamApplicationService;
+    private final ParamApplicationService paramApplicationService;
 
     @GetMapping("/qry/all")
     public Response<SystemInfoCO> qrySystemParam() {
-        return sysParamApplicationService.qrySystemParam();
+        return paramApplicationService.qrySystemParam();
     }
 }

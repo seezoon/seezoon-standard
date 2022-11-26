@@ -43,14 +43,14 @@ public class ModifyUserService {
             throw ExceptionFactory.bizException(ErrorCode.USER_NAME_EXISTS.code(),
                 String.format(ErrorCode.USER_NAME_EXISTS.msg(), vo.getUsername()));
         }
-        SysUserPO po = new SysUserPO();
-        po.setUserId(vo.getUserId());
-        po.setUsername(vo.getUsername());
-        po.setName(vo.getName());
-        po.setMobile(vo.getMobile());
-        po.setPhoto(vo.getPhoto());
-        po.setEmail(vo.getEmail());
-        po.setStatus(vo.getStatus());
-        sysUserRepository.updateSelective(po);
+        sysUserPO.setUserId(vo.getUserId());
+        sysUserPO.setPhoto(vo.getPhoto());
+        sysUserPO.setUsername(vo.getUsername());
+        sysUserPO.setName(vo.getName());
+        sysUserPO.setMobile(vo.getMobile());
+        sysUserPO.setPhoto(vo.getPhoto());
+        sysUserPO.setEmail(vo.getEmail());
+        sysUserPO.setStatus(vo.getStatus());
+        sysUserRepository.update(sysUserPO);
     }
 }

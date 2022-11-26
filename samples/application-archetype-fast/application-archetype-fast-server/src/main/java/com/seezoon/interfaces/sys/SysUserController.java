@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seezoon.application.sys.UserApplicationService;
 import com.seezoon.application.sys.dto.AddUserCmd;
+import com.seezoon.application.sys.dto.ChangeMyPwdCmd;
 import com.seezoon.application.sys.dto.ChangeUserPwdCmd;
 import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
 import com.seezoon.application.sys.dto.ModifyUserCmd;
@@ -46,6 +47,11 @@ public class SysUserController {
     @PostMapping("/change/pwd")
     public Response changeUserPwd(@RequestBody ChangeUserPwdCmd cmd) {
         return userApplicationService.changeUserPwd(cmd);
+    }
+
+    @PostMapping("/change/my_pwd")
+    public Response changeMyPwd(@RequestBody ChangeMyPwdCmd cmd) {
+        return userApplicationService.changeMyPwd(cmd);
     }
 
     /**

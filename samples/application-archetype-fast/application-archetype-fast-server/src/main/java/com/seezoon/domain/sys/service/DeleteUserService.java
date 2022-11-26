@@ -29,7 +29,7 @@ public class DeleteUserService {
     public void delete(@NotNull Integer userId) {
         SysUserPO sysUserPO = sysUserRepository.find(userId);
         if (null == sysUserPO) {
-            throw new BizException(ErrorCode.USER_NOT_EXISTS.code(), "userId [" + userId + "] not exists");
+            throw new BizException(ErrorCode.USER_NOT_EXISTS.code(), ErrorCode.USER_NOT_EXISTS.msg());
         }
         sysUserRepository.delete(userId);
     }

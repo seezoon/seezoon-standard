@@ -33,6 +33,7 @@ public class SystemParamQryExe {
 
     public Response<SystemInfoCO> execute() {
         SystemInfoCO systemInfoCO = new SystemInfoCO();
+        systemInfoCO.setUploadUrl(seezoonProperties.getUpload().getUploadUrl());
         systemInfoCO.setFileUrlPrefix(seezoonProperties.getUpload().getUrlPrefix());
         Map<String, List<Dict>> allDicts = seezoonProperties.getDicts();
         List<DictCO> dicts = new ArrayList<>();

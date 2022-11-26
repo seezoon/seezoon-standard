@@ -1,10 +1,30 @@
 <template>
   <t-dialog v-model:visible="visible" :closeOnOverlayClick="false" :destroy-on-close="true" :footer="false"
-            :header="title"
-            scroll-to-first-error="smooth" width="750">
-    <template #body>
-      <t-form ref="form" :data="data" style="min-height: 250px;" @submit="save">
+            :header="title" scroll-to-first-error="smooth" style="z-index: 100" width="750">
+    <template #body style="z-index: 100">
+      <t-form ref="form" :data="data" style="min-height: 250px;z-index: 100" @submit="save">
         <t-row :gutter="[0, 20]">
+          <t-col :span="12">
+            <t-form-item
+              :rules="[
+          ]"
+              label="图像" name="photo">
+              <t-upload
+                v-model="photo"
+                :action="getUploadUrl() "
+                :format-response="({data})=>{
+                  this.data.photo = data.relativePath;
+                  return {name:data.name,url:data.url};
+                }"
+                :headers="getStorageHeaderToken()"
+                :size-limit="{ size: 10, unit: 'MB', message: '图片大小不超过 {sizeLimit} MB' }"
+                accept="image/*"
+                name="file"
+                theme="image"
+                @remove="this.data.photo = undefined"
+              ></t-upload>
+            </t-form-item>
+          </t-col>
           <t-col :span="6">
             <t-form-item
               :rules="[
@@ -102,12 +122,14 @@
 <script>
 import {request} from '@/utils/request';
 import {RECORD_STATUS} from "@/constants";
+import {getUploadUrl, resolveFile} from "@/utils/param";
+import {getStorageHeaderToken} from "@/config/global";
 
 export default {
   name: 'UserForm',
   emits: ['refresh'],
   setup() {
-    return {RECORD_STATUS}
+    return {RECORD_STATUS, getUploadUrl, getStorageHeaderToken}
   },
   data() {
     return {
@@ -119,10 +141,18 @@ export default {
   computed: {
     isAdd: function () {
       return this.data.userId === undefined;
+    },
+    // 上传使用的 是个数组
+    photo: function () {
+      if (this.data.photo) {
+        return [{url: resolveFile(this.data.photo)}]
+      }
+      return [];
     }
   },
   methods: {
     open(title, userId) {
+      this.photo = [];
       this.title = title;
       this.data = {
         userId: userId

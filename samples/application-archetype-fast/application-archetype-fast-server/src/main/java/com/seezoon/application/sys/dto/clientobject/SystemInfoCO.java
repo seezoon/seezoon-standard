@@ -17,6 +17,7 @@ import lombok.Setter;
 public class SystemInfoCO {
 
     private String fileUrlPrefix;
+    private String uploadUrl;
 
     private List<DictCO> dicts = Collections.EMPTY_LIST;
 }

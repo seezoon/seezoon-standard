@@ -1,6 +1,7 @@
 package com.seezoon.application.sys;
 
 import com.seezoon.application.sys.dto.AddUserCmd;
+import com.seezoon.application.sys.dto.ChangeMyPwdCmd;
 import com.seezoon.application.sys.dto.ChangeUserPwdCmd;
 import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
 import com.seezoon.application.sys.dto.ModifyUserCmd;
@@ -9,6 +10,7 @@ import com.seezoon.application.sys.dto.UserPageQry;
 import com.seezoon.application.sys.dto.clientobject.PersonalInfoCO;
 import com.seezoon.application.sys.dto.clientobject.UserCO;
 import com.seezoon.application.sys.executor.AddUserCmdExe;
+import com.seezoon.application.sys.executor.ChangeMyPwdCmdExe;
 import com.seezoon.application.sys.executor.ChangeUserPwdCmdExe;
 import com.seezoon.application.sys.executor.DeleteUserByIdCmdExe;
 import com.seezoon.application.sys.executor.ModifyUserCmdExe;
@@ -37,12 +39,18 @@ public class UserApplicationService {
 
     private final PersonalInfoQryExe personalInfoQryExe;
 
+    private final ChangeMyPwdCmdExe changeMyPwdCmdExe;
+
     public Response deleteUserById(DeleteUserByIdCmd cmd) {
         return deleteUserByIdCmdExe.execute(cmd);
     }
 
     public Response changeUserPwd(ChangeUserPwdCmd cmd) {
         return changeUserPwdCmdExe.execute(cmd);
+    }
+
+    public Response changeMyPwd(ChangeMyPwdCmd cmd) {
+        return changeMyPwdCmdExe.execute(cmd);
     }
 
     public Response addUser(AddUserCmd cmd) {

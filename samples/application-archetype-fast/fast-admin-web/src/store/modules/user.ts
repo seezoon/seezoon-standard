@@ -2,6 +2,7 @@ import {defineStore} from 'pinia';
 import {removeStorageToken, TOKEN_NAME} from '@/config/global';
 import {store} from '@/store';
 import {request} from '@/utils/request';
+import {resolveFile} from "@/utils/param";
 
 const InitUserInfo = {
   name: undefined,
@@ -36,6 +37,7 @@ export const useUserStore = defineStore('user', {
         url: '/sys/user/personal'
       });
       this.userInfo = info;
+      this.userInfo.photo = resolveFile(info.photo);
       this.userInfo.roles = roles.concat(permissions);
     },
     async logout() {

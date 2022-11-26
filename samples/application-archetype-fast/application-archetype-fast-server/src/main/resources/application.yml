@@ -34,6 +34,10 @@ server:
   compression:
     # 默认关，io不是问题的话不需要打开
     enabled: true
+springdoc:
+  api-docs:
+    # 开发测试可以打开，生产关闭
+    enabled: false
 #feign
 feign:
   client:

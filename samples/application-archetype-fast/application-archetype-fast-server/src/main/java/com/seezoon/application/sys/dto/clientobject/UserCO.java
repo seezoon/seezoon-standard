@@ -58,5 +58,5 @@ public class UserCO {
      * 修改时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime modifyTime;
+    private LocalDateTime updateTime;
 }

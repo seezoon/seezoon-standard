@@ -1,5 +1,20 @@
 import {getSystemStore} from "@/store";
 
+
+export function getUploadUrl() {
+  // const systemStore = getSystemStore();
+  // return systemStore.systemInfo?.uploadUrl + '/api/file/upload';
+  return "/api/file/upload";
+}
+
+export function resolveFile(path: string | null | undefined) {
+  if (!path) {
+    return undefined;
+  }
+  const systemStore = getSystemStore();
+  return systemStore.systemInfo?.fileUrlPrefix + path;
+}
+
 export function getDict(type: string) {
   const systemStore = getSystemStore();
   return systemStore.dictMap.get(type);

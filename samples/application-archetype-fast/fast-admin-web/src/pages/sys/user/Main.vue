@@ -41,6 +41,7 @@
         <p><b>用户名：</b>{{ row.username }}</p>
         <p><b>手机号：</b>{{ row.mobile }}</p>
         <p><b>邮箱：</b>{{ row.email }}</p>
+        <p><b>修改时间：</b>{{ row.updateTime }}</p>
         <p><b>状态：</b>{{ getDictName(DICT_RECORD_STATUS, row.status) }}</p>
       </div>
     </template>
@@ -86,7 +87,7 @@
 import {DICT_RECORD_STATUS, RECORD_STATUS} from "@/constants";
 import ChangePwd from './ChangePwd.vue'
 import UserForm from './UserForm.vue'
-import {getDictName} from "@/utils/dict";
+import {getDictName} from "@/utils/param";
 
 const columns = [{
   colKey: 'name',

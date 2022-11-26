@@ -6,9 +6,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import com.seezoon.application.authentication.SecurityUtils;
 import com.seezoon.application.sys.dto.DeleteUserByIdCmd;
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.domain.sys.service.DeleteUserService;
+import com.seezoon.infrastructure.error.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +32,10 @@ public class DeleteUserByIdCmdExe {
      * @param cmd
      */
     public Response execute(@NotNull @Valid DeleteUserByIdCmd cmd) {
+        if (SecurityUtils.isSuperAdmin(cmd.getUserId())) {
+            return Response.error(ErrorCode.SUPER_ADMIN_NOT_ALLOW_DELETE.code(),
+                ErrorCode.SUPER_ADMIN_NOT_ALLOW_DELETE.msg());
+        }
         this.deleteUserService.delete(cmd.getUserId());
         return Response.success();
     }

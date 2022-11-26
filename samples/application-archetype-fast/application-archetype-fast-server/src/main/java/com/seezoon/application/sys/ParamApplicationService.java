@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
  */
 @ApplicationService
 @RequiredArgsConstructor
-public class SysParamApplicationService {
+public class ParamApplicationService {
 
     private final SystemParamQryExe systemParamQryExe;
 

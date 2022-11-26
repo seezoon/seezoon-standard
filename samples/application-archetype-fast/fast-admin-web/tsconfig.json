@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
@@ -9,15 +10,28 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "lib": ["esnext", "dom"],
-    "types": ["vite/client"],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "types": [
+      "vite/client"
+    ],
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   },
-  "include": ["**/*.ts", "src/**/*.d.ts",
-      "src/types/**/*.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "**/*.ts",
+    "src/**/*.d.ts",
+    "src/types/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
   "compileOnSave": false
 }
