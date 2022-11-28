@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seezoon.domain.sys.repository.mapper.SysUserMapper">
-    <resultMap id="BaseResultMap" type="com.seezoon.domain.sys.repository.po.SysUserPO">
+<mapper namespace="com.seezoon.demo.domain.sys.repository.mapper.SysUserMapper">
+    <resultMap id="BaseResultMap" type="com.seezoon.demo.domain.sys.repository.po.SysUserPO">
         <id column="user_id" jdbcType="INTEGER" property="userId"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -33,7 +33,7 @@
         where t.user_id = #{userId}
     </select>
 
-    <select id="selectByCondition" parameterType="com.seezoon.domain.sys.repository.po.SysUserPOCondition"
+    <select id="selectByCondition" parameterType="com.seezoon.demo.domain.sys.repository.po.SysUserPOCondition"
             resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -77,7 +77,7 @@
         </foreach>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.seezoon.domain.sys.repository.po.SysUserPO">
+    <update id="updateByPrimaryKeySelective" parameterType="com.seezoon.demo.domain.sys.repository.po.SysUserPO">
         update sys_user t
         <set>
             <if test="username != null">
@@ -113,7 +113,7 @@
         </set>
         where t.user_id = #{userId} limit 2
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.seezoon.domain.sys.repository.po.SysUserPO">
+    <update id="updateByPrimaryKey" parameterType="com.seezoon.demo.domain.sys.repository.po.SysUserPO">
         update sys_user t set
         t.username = #{username}
         ,t.password = #{password}

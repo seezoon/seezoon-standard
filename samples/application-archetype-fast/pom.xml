@@ -7,7 +7,7 @@
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.seezoon</groupId>
+    <groupId>com.seezoon.demo</groupId>
     <artifactId>application-archetype-fast</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
@@ -23,7 +23,7 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.seezoon</groupId>
+                <groupId>com.seezoon.demo</groupId>
                 <artifactId>application-archetype-fast-stub</artifactId>
                 <version>${project.version}</version>
             </dependency>

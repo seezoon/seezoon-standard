@@ -1,0 +1,20 @@
+# 这个本地使用无需发布，配置都不会打包，正式发布命名为application-cli.yml,优先级最高
+springdoc:
+  api-docs:
+    # 开发测试可以打开，生产关闭
+    enabled: true
+---
+# DB
+db:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password:
+---
+seezoon:
+  app:
+    secret-key: 5V%XWz5v#7TWVM,^55+,wEluTIeq6yRH
+  upload:
+    url-prefix: http://localhost:4173
+    directory: /Users/huangdengfeng/Documents/personal/projects/seezoon/seezoon-standard/samples/application-archetype-fast/fast-admin-web/dist
+    upload-url: http://127.0.0.1:8080

@@ -5,8 +5,8 @@
 ```shell
 mvn archetype:generate \
     -DarchetypeGroupId=com.seezoon \
-    -DarchetypeArtifactId=application-archetype \
-    -DarchetypeVersion=1.0.0 \
+    -DarchetypeArtifactId=fase \
+    -DarchetypeVersion=1.0.0-SNAPSHOT \
     -DgroupId=${your groupId} \
     -DartifactId=${your artifactId} \
     -Dversion=1.0.0-SNAPSHOT \

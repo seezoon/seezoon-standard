@@ -1,0 +1,53 @@
+spring:
+  profiles:
+    # 环境标识，本机开发环境有意义,如果觉得污染,可以IDEA 传入--spring.profiles.active=local
+    active: local
+    include: db,dict
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  application:
+    name: seezoon-demo
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      file-size-threshold: 10MB
+      max-request-size: 100MB
+  mvc:
+    servlet:
+      # 避免首次慢
+      load-on-startup: 1
+  autoconfigure:
+    # 打印默认密码问题，实际没有采用内置的认证体系
+    exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    basedir: .
+    connection-timeout: 60s
+    threads:
+      max: 2000
+    accesslog:
+      #pattern see https://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Logging
+      enabled: true
+      max-days: 2
+  compression:
+    # 默认关，io不是问题的话不需要打开
+    enabled: true
+springdoc:
+  api-docs:
+    # 开发测试可以打开，生产关闭
+    enabled: false
+#feign
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 2000
+        read-timeout: 6000
+  httpclient:
+    connection-timeout: 2000
+    max-connections: 500
+    max-connections-per-route: 500
+    time-to-live: 2
+    time-to-live-unit: minutes

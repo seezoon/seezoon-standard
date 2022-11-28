@@ -7,7 +7,7 @@
         <relativePath>../bom/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <groupId>com.seezoon.archetype</groupId>
     <artifactId>archetypes</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
@@ -24,7 +24,8 @@
     </dependencies>
 
     <modules>
-        <module>application-archetype</module>
+        <module>quickstart</module>
+        <module>fast</module>
     </modules>
     <build>
         <extensions>

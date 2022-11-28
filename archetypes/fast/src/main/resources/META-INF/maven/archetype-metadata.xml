@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd" name="application-archetype-fast"
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>fast-admin-web</directory>
+      <includes>
+        <include>**/*.html</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>fast-admin-web</directory>
+      <includes>
+        <include>**/*.</include>
+        <include>**/*.development</include>
+        <include>**/*.gitignore</include>
+        <include>**/*.eslintrc</include>
+        <include>**/*.js</include>
+        <include>**/*.env</include>
+        <include>**/*.stylelintignore</include>
+        <include>**/*.md</include>
+        <include>**/*.editorconfig</include>
+        <include>**/*.lock</include>
+        <include>**/*.json</include>
+        <include>**/*.eslintignore</include>
+        <include>**/*.npmrc</include>
+        <include>**/*.ts</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>fast-admin-web/mock</directory>
+      <includes>
+        <include>**/*.ts</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>doc/sql</directory>
+      <includes>
+        <include>**/*.sql</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>fast-admin-web/docs</directory>
+      <includes>
+        <include>**/*.png</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>fast-admin-web/src</directory>
+      <includes>
+        <include>**/*.svg</include>
+        <include>**/*.vue</include>
+        <include>**/*.png</include>
+        <include>**/*.less</include>
+        <include>**/*.ts</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>doc</directory>
+      <includes>
+        <include>**/*.png</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>fast-admin-web/public</directory>
+      <includes>
+        <include>**/*.ico</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>Dockerfile</include>
+        <include>README.md</include>
+        <include>build.sh</include>
+        <include>.gitignore</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  <modules>
+    <module id="${rootArtifactId}-server" dir="__rootArtifactId__-server" name="${rootArtifactId}-server">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.txt</include>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>src/main/resources</directory>
+          <includes>
+            <include>**/*.sh</include>
+            <include>**/*.UserContext</include>
+            <include>**/*.yml</include>
+            <include>**/*.factories</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/test/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>application-archetype-fast-server.iml</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+    <module id="${rootArtifactId}-stub" dir="__rootArtifactId__-stub" name="${rootArtifactId}-stub" />
+  </modules>
+</archetype-descriptor>
