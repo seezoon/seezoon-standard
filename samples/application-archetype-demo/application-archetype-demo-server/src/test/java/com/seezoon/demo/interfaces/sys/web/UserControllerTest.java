@@ -9,16 +9,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seezoon.ddd.dto.Response;
-import com.seezoon.demo.BaseSpringApplicationTest;
-import com.seezoon.demo.application.sys.UserApplicationService;
-import com.seezoon.demo.application.sys.dto.AddUserCmd;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seezoon.ddd.dto.Response;
+import com.seezoon.demo.BaseSpringApplicationTest;
+import com.seezoon.demo.application.sys.UserApplicationService;
+import com.seezoon.demo.application.sys.dto.AddUserCmd;
+
+@Disabled
 class UserControllerTest extends BaseSpringApplicationTest {
 
     @MockBean
@@ -31,22 +34,20 @@ class UserControllerTest extends BaseSpringApplicationTest {
     void addUser() throws Exception {
         when(userApplicationService.addUser(any(AddUserCmd.class))).thenReturn(Response.success());
 
-        mockMvc.perform(post("/sys/user/add_user").content(objectMapper.writeValueAsString(new AddUserCmd()))
-                        .contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andDo(print())
-                .andExpect(jsonPath("$.code").value(0));
+        mockMvc
+            .perform(post("/sys/user/add_user").content(objectMapper.writeValueAsString(new AddUserCmd()))
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.code").value(0));
 
         verify(userApplicationService, atLeastOnce()).addUser(any(AddUserCmd.class));
     }
 
     @Test
-    void testAddUser() {
-    }
+    void testAddUser() {}
 
     @Test
-    void modifyUserMobile() {
-    }
+    void modifyUserMobile() {}
 
     @Test
-    void qryUserPage() {
-    }
+    void qryUserPage() {}
 }

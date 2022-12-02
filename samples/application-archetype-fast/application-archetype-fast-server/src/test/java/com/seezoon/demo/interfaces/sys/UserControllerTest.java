@@ -33,7 +33,7 @@ class UserControllerTest extends BaseSpringApplicationTest {
         when(userApplicationService.addUser(any(AddUserCmd.class))).thenReturn(Response.success());
 
         mockMvc
-            .perform(post("/sys/user/add_user").content(objectMapper.writeValueAsString(new AddUserCmd()))
+            .perform(post("/sys/user/add").content(objectMapper.writeValueAsString(new AddUserCmd()))
                 .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk()).andDo(print()).andExpect(jsonPath("$.code").value(0));
 

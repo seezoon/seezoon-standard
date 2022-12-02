@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -18,6 +19,7 @@ import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 
+@Disabled
 @Slf4j
 class HelloWorldServiceTest extends BaseSpringApplicationTest {
 
@@ -31,6 +33,7 @@ class HelloWorldServiceTest extends BaseSpringApplicationTest {
     private HelloWorldServiceFutureStub helloWorldServiceFutureStub;
 
     @Test
+    @Disabled
     void say1() {
         HelloWorldRequest request = HelloWorldRequest.newBuilder().setName("grpc").build();
         helloWorldServiceStub.say(request, new StreamObserver<>() {
@@ -54,6 +57,7 @@ class HelloWorldServiceTest extends BaseSpringApplicationTest {
     }
 
     @Test
+    @Disabled
     void say2() {
         try {
             HelloWorldResponse response = helloWorldServiceBlockingStub.say(request);
