@@ -15,6 +15,6 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class AuthorizationTokenCO {
-    @Schema(title = "登录凭证，添加header Authorization:Bearer token")
+    @Schema(title = "登录凭证", description = "添加header Authorization:Bearer token")
     private final String token;
 }
