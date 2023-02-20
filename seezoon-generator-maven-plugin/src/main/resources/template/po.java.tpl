@@ -59,7 +59,7 @@ public class ${classNamePO} extends BasePO<${pkPlan.dataType.javaType()}> {
 
     @Override
     public void setId(${pkPlan.dataType.javaType()} ${pkPlan.javaFieldName}) {
-        this.setId(${pkPlan.javaFieldName});
+        super.setId(${pkPlan.javaFieldName});
         this.${pkPlan.javaFieldName} = ${pkPlan.javaFieldName};
     }
 </#if>

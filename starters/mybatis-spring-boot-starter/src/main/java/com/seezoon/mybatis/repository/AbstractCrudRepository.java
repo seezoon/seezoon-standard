@@ -1,17 +1,5 @@
 package com.seezoon.mybatis.repository;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
-import org.springframework.validation.annotation.Validated;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.PageSerializable;
@@ -20,6 +8,17 @@ import com.seezoon.mybatis.repository.po.AbstractPOQueryCondition;
 import com.seezoon.mybatis.repository.po.BasePO;
 import com.seezoon.mybatis.repository.spi.UserContextLoader;
 import com.seezoon.mybatis.repository.utils.IdGen;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 增删改查仓储服务，因性能损耗仓库服务不做字段级别校验
@@ -33,6 +32,14 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
     @SuppressWarnings("all")
     @Autowired
     protected D d;
+    private Class<PK> pkClass;
+
+    protected AbstractCrudRepository() {
+        Type genericSuperclass = this.getClass().getGenericSuperclass();
+        ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+        Type pkType = parameterizedType.getActualTypeArguments()[2];
+        this.pkClass = (Class<PK>) pkType;
+    }
 
     /**
      * 根据主键查询
@@ -55,7 +62,7 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
     public T findOne(AbstractPOQueryCondition condition) {
         List<T> ts = this.find(condition);
         Assert.isTrue(ts.size() <= 1,
-            "Expected one result (or null) to be returned by findOne(), but found: " + ts.size());
+                "Expected one result (or null) to be returned by findOne(), but found: " + ts.size());
         return ts.isEmpty() ? null : ts.get(0);
     }
 
@@ -111,8 +118,8 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
     public int save(@NotEmpty T... records) {
         Arrays.stream(records).forEach((t) -> {
             // 当为空且是字符串类型时候，默认为其生成主键
-            if (null == t.getId() && t.getId() instanceof String) {
-                t.setId((PK)IdGen.uuid());
+            if (null == t.getId() && String.class.isAssignableFrom(pkClass)) {
+                t.setId((PK) IdGen.uuid());
             }
             if (null == t.getCreateBy()) {
                 t.setCreateBy(UserContextLoader.getInstance().getId());
@@ -125,7 +132,7 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
         });
         int affectedRows = this.d.insert(records);
         Assert.isTrue(affectedRows == records.length,
-            "affected rows expect:" + records.length + ",actually:" + affectedRows);
+                "affected rows expect:" + records.length + ",actually:" + affectedRows);
         return affectedRows;
     }
 
