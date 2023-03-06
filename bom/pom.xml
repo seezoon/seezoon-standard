@@ -24,6 +24,7 @@
         <protoc.version>3.21.1</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
         <brave-instrumentation-grpc.version>5.13.9</brave-instrumentation-grpc.version>
+        <dubbo.version>3.1.7</dubbo.version>
 
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
         <!-- mybatis -->
@@ -55,6 +56,13 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

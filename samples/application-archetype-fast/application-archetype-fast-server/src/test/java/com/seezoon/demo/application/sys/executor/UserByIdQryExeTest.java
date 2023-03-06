@@ -3,25 +3,25 @@ package com.seezoon.demo.application.sys.executor;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.SpyBean;
-
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.demo.BaseSpringApplicationTest;
 import com.seezoon.demo.application.sys.dto.UserByIdQry;
 import com.seezoon.demo.application.sys.dto.clientobject.UserCO;
 import com.seezoon.demo.domain.sys.repository.SysUserRepository;
 import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 class UserByIdQryExeTest extends BaseSpringApplicationTest {
 
     /**
      * 部分mock
      */
-    @SpyBean
+    //@SpyBean
+    @MockBean
     public SysUserRepository sysUserRepository;
 
     @Autowired
