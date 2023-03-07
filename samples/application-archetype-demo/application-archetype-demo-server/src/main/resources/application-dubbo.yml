@@ -1,0 +1,25 @@
+# dubbo 参数手册
+# https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/
+# https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/principle/#1-%E9%85%8D%E7%BD%AE%E6%A0%BC%E5%BC%8F
+dubbo:
+  application:
+    name: ${spring.application.name}
+  protocol:
+    port: 9000
+    # triple 协议
+    name: tri
+    host: 0.0.0.0
+  # 消费者默认参数
+  consumer:
+    # ms
+    timeout: 2000
+    retries: 0
+  reference:
+    com.seezoon.demo.helloworld.HelloWorldService:
+      # 直连
+      url: tri://127.0.0.1:9000
+
+
+
+
+

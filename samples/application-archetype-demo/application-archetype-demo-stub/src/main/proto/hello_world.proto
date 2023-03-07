@@ -4,7 +4,7 @@ package com.seezoon.demo.helloworld;
 option java_package = "com.seezoon.demo.helloworld";
 // 默认自动转驼峰，有需求可以自定义
 option java_outer_classname = "HelloWorld";
-option java_multiple_files = false;
+option java_multiple_files = true;
 // 有复用的直接导入即可
 // import "xxx.proto"
 

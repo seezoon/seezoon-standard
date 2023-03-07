@@ -15,20 +15,14 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
         <!-- web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!-- 作为服务端时候 grpc -->
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-server-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- 作为客户端时候 grpc -->
-        <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-client-spring-boot-starter</artifactId>
         </dependency>
         <!-- DB -->
         <dependency>
@@ -49,15 +43,9 @@
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-instrumentation-grpc</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>${groupId}</groupId>
             <artifactId>${rootArtifactId}-stub</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

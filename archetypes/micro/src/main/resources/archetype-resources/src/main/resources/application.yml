@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    # 环境标识，本机开发环境有意义,如果觉得污染,可以IDEA 传入--spring.profiles.active=local
+    active: local
+    include: dubbo
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  application:
+    name: application-archetype-micro

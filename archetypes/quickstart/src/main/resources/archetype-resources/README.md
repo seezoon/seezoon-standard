@@ -44,7 +44,7 @@ parent
 │       ├── error # 错误码
 │       ├── exception # 异常处理
 │       └── utils # 工具类
-└── stub # trpc 自动生成的桩代码
+└── stub # dubbo 自动生成的桩代码
 ```
 
 ### 分层依赖

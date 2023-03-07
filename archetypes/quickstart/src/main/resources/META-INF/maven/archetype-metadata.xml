@@ -15,12 +15,6 @@
         <include>**/*.png</include>
       </includes>
     </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory></directory>
-      <includes>
-        <include>.flattened-pom.xml</include>
-      </includes>
-    </fileSet>
     <fileSet encoding="UTF-8">
       <directory></directory>
       <includes>
@@ -28,6 +22,7 @@
         <include>README.md</include>
         <include>build.sh</include>
         <include>.gitignore</include>
+        <include>application-archetype-demo.iml</include>
       </includes>
     </fileSet>
   </fileSets>
@@ -59,10 +54,10 @@
             <include>**/*.java</include>
           </includes>
         </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
+        <fileSet encoding="UTF-8">
           <directory></directory>
           <includes>
-            <include>.flattened-pom.xml</include>
+            <include>application-archetype-demo-server.iml</include>
           </includes>
         </fileSet>
       </fileSets>
@@ -73,12 +68,6 @@
           <directory>src/main/proto</directory>
           <includes>
             <include>**/*.proto</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
-          <directory></directory>
-          <includes>
-            <include>.flattened-pom.xml</include>
           </includes>
         </fileSet>
       </fileSets>

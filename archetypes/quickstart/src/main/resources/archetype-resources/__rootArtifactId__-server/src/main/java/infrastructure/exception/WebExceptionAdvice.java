@@ -3,11 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package}.infrastructure.exception;
 
+import com.seezoon.ddd.dto.Response;
+import com.seezoon.ddd.exception.BizException;
+import com.seezoon.ddd.exception.SysException;
+import ${package}.infrastructure.error.ErrorCode;
 import java.sql.SQLException;
-
 import javax.validation.ValidationException;
-
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.transaction.TransactionException;
 import org.springframework.validation.BindException;
@@ -15,14 +17,6 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
-import com.seezoon.ddd.dto.Response;
-import com.seezoon.ddd.exception.BizException;
-import com.seezoon.ddd.exception.SysException;
-import ${package}.infrastructure.error.ErrorCode;
-
-import io.grpc.StatusRuntimeException;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * web exception advice
@@ -40,7 +34,7 @@ public class WebExceptionAdvice {
      * @return
      */
     @ExceptionHandler({MissingServletRequestParameterException.class, ValidationException.class,
-        MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class, BindException.class})
+            MethodArgumentTypeMismatchException.class, HttpMessageNotReadableException.class, BindException.class})
     public Response parameterInvalidException(Exception e) {
         return Response.error(ErrorCode.PARAM_INVALID.code(), e.getMessage());
     }
@@ -61,21 +55,6 @@ public class WebExceptionAdvice {
         return Response.error(ErrorCode.SQL_ERROR.code(), e.getMessage());
     }
 
-    /**
-     * 调用下游GRPC 遇到错误时候
-     *
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(StatusRuntimeException.class)
-    public Response statusRuntimeException(StatusRuntimeException e) {
-        final String code = GrpcCustomHeader.getCode(e);
-        final String msg = GrpcCustomHeader.getMsg(e);
-        if (StringUtils.isNotEmpty(code)) {
-            return Response.error(ErrorCode.INVOKE_GRPC_ERROR.code(), "code:" + code + ",msg:" + msg);
-        }
-        return Response.error(ErrorCode.INVOKE_GRPC_ERROR.code(), e.getMessage());
-    }
 
     @ExceptionHandler(BizException.class)
     public Response bizException(BizException e) {

@@ -1,0 +1,19 @@
+# dubbo 参数手册
+# https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/properties/
+# https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/config/principle/#1-%E9%85%8D%E7%BD%AE%E6%A0%BC%E5%BC%8F
+dubbo:
+  application:
+    name: ${spring.application.name}
+    # wait ms
+    shut-wait: 30000
+  protocol:
+    name: tri
+    port: 9000
+  consumer:
+    # ms
+    timeout: 2000
+    retries: 0
+  reference:
+    com.seezoon.demo.stub.Greeter:
+      # 直连
+      url: tri://192.168.1.28:9000

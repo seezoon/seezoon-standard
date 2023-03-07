@@ -20,11 +20,10 @@
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <!-- grpc -->
         <grpc.version>1.47.0</grpc.version>
-        <grpc.starter.version>2.13.1.RELEASE</grpc.starter.version>
         <protoc.version>3.21.1</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-        <brave-instrumentation-grpc.version>5.13.9</brave-instrumentation-grpc.version>
         <dubbo.version>3.1.7</dubbo.version>
+        <protobuf.version>3.19.2</protobuf.version>
 
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
         <!-- mybatis -->
@@ -75,19 +74,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>net.devh</groupId>
-                <artifactId>grpc-server-spring-boot-starter</artifactId>
-                <version>${grpc.starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.devh</groupId>
-                <artifactId>grpc-client-spring-boot-starter</artifactId>
-                <version>${grpc.starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.zipkin.brave</groupId>
-                <artifactId>brave-instrumentation-grpc</artifactId>
-                <version>${brave-instrumentation-grpc.version}</version>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -224,6 +213,16 @@
                         <pluginArtifact>
                             io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
                         </pluginArtifact>
+                        <protocPlugins>
+                            <protocPlugin>
+                                <id>dubbo</id>
+                                <groupId>org.apache.dubbo</groupId>
+                                <artifactId>dubbo-compiler</artifactId>
+                                <version>${dubbo.version}</version>
+                                <mainClass>org.apache.dubbo.gen.tri.Dubbo3TripleGenerator
+                                </mainClass>
+                            </protocPlugin>
+                        </protocPlugins>
                         <!-- 默认路径，可以自行指定
                         <protoSourceRoot>src/main/proto</protoSourceRoot>
                          <outputDirectory>${project.build.directory}/generated-sources/protobuf/java</outputDirectory>

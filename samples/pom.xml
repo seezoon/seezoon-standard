@@ -14,6 +14,7 @@
     <modules>
         <module>application-archetype-demo</module>
         <module>application-archetype-fast</module>
+        <module>application-archetype-micro</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -26,6 +26,7 @@
     <modules>
         <module>quickstart</module>
         <module>fast</module>
+        <module>micro</module>
     </modules>
     <build>
         <extensions>
