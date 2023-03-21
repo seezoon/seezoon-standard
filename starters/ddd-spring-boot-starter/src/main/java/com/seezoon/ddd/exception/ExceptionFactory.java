@@ -11,7 +11,7 @@ public class ExceptionFactory {
         return new BizException(msg);
     }
 
-    public static BizException bizException(String code, String msg) {
+    public static BizException bizException(int code, String msg) {
         return new BizException(code, msg);
     }
 
@@ -19,7 +19,7 @@ public class ExceptionFactory {
         return new SysException(msg);
     }
 
-    public static SysException sysException(String code, String msg) {
+    public static SysException sysException(int code, String msg) {
         return new SysException(code, msg);
     }
 
@@ -27,7 +27,7 @@ public class ExceptionFactory {
         return new SysException(msg, e);
     }
 
-    public static SysException sysException(String code, String msg, Throwable e) {
+    public static SysException sysException(int code, String msg, Throwable e) {
         return new SysException(code, msg, e);
     }
 }

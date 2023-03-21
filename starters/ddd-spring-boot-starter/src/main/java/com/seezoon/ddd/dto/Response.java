@@ -5,19 +5,19 @@ package com.seezoon.ddd.dto;
  */
 public class Response<T> {
 
-    private static final String DEFAULT_SUCCESS_CODE = "0";
+    private static final int DEFAULT_SUCCESS_CODE = 0;
     private static final String DEFAULT_SUCCESS_MSG = "success";
     private static final Response SUCCESS = new Response(DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MSG);
-    private String code;
+    private int code;
     private String msg;
     private T data;
 
-    public Response(String code, String msg) {
+    public Response(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public Response(String code, String msg, T data) {
+    public Response(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
@@ -33,20 +33,20 @@ public class Response<T> {
         return response;
     }
 
-    public static Response error(String code, String msg) {
+    public static Response error(int code, String msg) {
         Response response = new Response(code, msg);
         return response;
     }
 
     public boolean isSuccess() {
-        return DEFAULT_SUCCESS_CODE.equals(code);
+        return DEFAULT_SUCCESS_CODE == code;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

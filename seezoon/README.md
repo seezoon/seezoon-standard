@@ -15,6 +15,8 @@
 
 ## 打包插件
 
+打包成现网部署的目录，需要使用插件
+
 ```xml
 
 <build>
@@ -31,4 +33,41 @@
         </plugin>
     </plugins>
 </build>
+```
+
+## 约定
+
+- 执行打包后自动生成配置目录
+  配置目录为工程目录/conf
+
+- 根目录配置文件不打入到jar中，打入jar的自己建目录，如mybatis mappings,META-INF 等。
+
+```xml
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>${maven-jar-plugin.version}</version>
+    <configuration>
+        <excludes>
+            <exclude>*.*</exclude>
+        </excludes>
+    </configuration>
+</plugin>
+```
+
+- 如有本地测试使用的配置文件，需要命名为application-local.yml或application-local.properties，这样生成配置目录会排除。
+
+```xml
+
+<fileSet>
+    <directory>src/main/resources</directory>
+    <includes>
+        <include>*.*</include>
+    </includes>
+    <excludes>
+        <exclude>application-local.*</exclude>
+    </excludes>
+    <outputDirectory>conf</outputDirectory>
+</fileSet>
 ```

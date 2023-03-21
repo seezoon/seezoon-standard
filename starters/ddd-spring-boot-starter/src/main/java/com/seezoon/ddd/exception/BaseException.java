@@ -9,13 +9,13 @@ public abstract class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    private String code;
+    private int code;
 
     public BaseException(String msg) {
         super(msg);
     }
 
-    public BaseException(String code, String msg) {
+    public BaseException(int code, String msg) {
         super(msg);
         this.code = code;
     }
@@ -24,16 +24,16 @@ public abstract class BaseException extends RuntimeException {
         super(msg, e);
     }
 
-    public BaseException(String code, String msg, Throwable e) {
+    public BaseException(int code, String msg, Throwable e) {
         super(msg, e);
         this.code = code;
     }
 
-    public String getcode() {
+    public int getcode() {
         return code;
     }
 
-    public void setcode(String code) {
+    public void setcode(int code) {
         this.code = code;
     }
 }

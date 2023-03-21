@@ -7,15 +7,14 @@ package com.seezoon.ddd.exception;
  */
 public class BizException extends BaseException {
 
+    public final static int DEFAULT_ERR_CODE = -1;
     private static final long serialVersionUID = 1L;
-
-    public static String DEFAULT_ERR_CODE = "BIZ_ERROR";
 
     public BizException(String msg) {
         super(DEFAULT_ERR_CODE, msg);
     }
 
-    public BizException(String code, String msg) {
+    public BizException(int code, String msg) {
         super(code, msg);
     }
 
@@ -23,7 +22,7 @@ public class BizException extends BaseException {
         super(DEFAULT_ERR_CODE, msg, e);
     }
 
-    public BizException(String code, String msg, Throwable e) {
+    public BizException(int code, String msg, Throwable e) {
         super(code, msg, e);
     }
 

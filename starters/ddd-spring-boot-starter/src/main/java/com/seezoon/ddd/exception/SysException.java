@@ -7,15 +7,15 @@ package com.seezoon.ddd.exception;
  */
 public class SysException extends BaseException {
 
+    public final static int DEFAULT_ERR_CODE = -2;
+    
     private static final long serialVersionUID = 1L;
-
-    public static String DEFAULT_ERR_CODE = "SYS_ERROR";
 
     public SysException(String msg) {
         super(DEFAULT_ERR_CODE, msg);
     }
 
-    public SysException(String code, String msg) {
+    public SysException(int code, String msg) {
         super(code, msg);
     }
 
@@ -23,7 +23,7 @@ public class SysException extends BaseException {
         super(DEFAULT_ERR_CODE, msg, e);
     }
 
-    public SysException(String code, String msg, Throwable e) {
+    public SysException(int code, String msg, Throwable e) {
         super(code, msg, e);
     }
 

@@ -4,31 +4,31 @@ import com.seezoon.ddd.exception.ErrorDefinition;
 
 public enum ErrorCode implements ErrorDefinition {
 
+    /**
+     * 通用错误
+     */
+    UNSPECIFIED(10000, "unspecified error"),
 
-    UNSPECIFIED("UNSPECIFIED", "unspecified error"),
+    PARAM_INVALID(10001, "param invalid"),
 
-    PARAM_INVALID("PARAM_INVALID", "param invalid"),
-
-    INVOKE_GRPC_ERROR("INVOKE_GRPC_ERROR", "invoke grpc error"),
-
-    SQL_ERROR("SQL_ERROR", "sql error"),
+    SQL_ERROR(10002, "sql error"),
 
     /**
      * 业务错误
      */
-    USER_NOT_EXISTS("USER_NOT_EXISTS", "用户不存在");
+    USER_NOT_EXISTS(20000, "用户不存在");
 
-    private String code;
+    private int code;
     private String msg;
 
 
-    ErrorCode(String code, String msg) {
+    ErrorCode(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
     @Override
-    public String code() {
+    public int code() {
         return code;
     }
 

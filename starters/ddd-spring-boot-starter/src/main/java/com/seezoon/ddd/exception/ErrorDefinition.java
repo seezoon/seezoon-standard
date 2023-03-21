@@ -7,7 +7,12 @@ package com.seezoon.ddd.exception;
  */
 public interface ErrorDefinition {
 
-    String code();
+    /**
+     * Do a good job of error code planning
+     *
+     * @return
+     */
+    int code();
 
     String msg();
 

@@ -7,7 +7,7 @@ package com.seezoon.ddd.exception;
  */
 public abstract class Assertion {
 
-    public static void isTrue(boolean expression, String code, String msg) {
+    public static void isTrue(boolean expression, int code, String msg) {
         if (!expression) {
             throw new BizException(code, msg);
         }
@@ -23,7 +23,7 @@ public abstract class Assertion {
         isTrue(expression, "[Assertion failed] Must be true");
     }
 
-    public static void notNull(Object object, String code, String msg) {
+    public static void notNull(Object object, int code, String msg) {
         if (object == null) {
             throw new BizException(code, msg);
         }

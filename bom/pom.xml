@@ -22,7 +22,8 @@
         <grpc.version>1.47.0</grpc.version>
         <protoc.version>3.21.1</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-        <dubbo.version>3.1.7</dubbo.version>
+        <dubbo.version>3.1.8</dubbo.version>
+        <pgv.version>0.10.1</pgv.version>
         <protobuf.version>3.19.2</protobuf.version>
 
         <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
@@ -65,6 +66,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- proto validate -->
+            <dependency>
+                <groupId>build.buf.protoc-gen-validate</groupId>
+                <artifactId>pgv-java-stub</artifactId>
+                <version>${pgv.version}</version>
+            </dependency>
             <!-- grpc  -->
             <dependency>
                 <groupId>io.grpc</groupId>
@@ -76,6 +83,11 @@
             <dependency>
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java-util</artifactId>
                 <version>${protobuf.version}</version>
             </dependency>
             <dependency>
@@ -136,6 +148,11 @@
             <dependency>
                 <groupId>com.seezoon</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${revision}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.seezoon</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

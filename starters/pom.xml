@@ -17,6 +17,7 @@
     <modules>
         <module>ddd-spring-boot-starter</module>
         <module>mybatis-spring-boot-starter</module>
+        <module>dubbo-spring-boot-starter</module>
     </modules>
 
     <dependencies>

@@ -7,45 +7,46 @@ import com.seezoon.ddd.exception.ErrorDefinition;
  */
 public enum ErrorCode implements ErrorDefinition {
 
-    UNKOWN("UNKOWN", "系统错误：%s"),
+    UNKOWN(10000, "系统错误：%s"),
 
-    SQL_ERROR("SQL_ERROR", "数据库操作异常：%s"),
+    SQL_ERROR(10001, "数据库操作异常：%s"),
 
-    PARAM_INVALID("PARAM_INVALID", "参数错误：%s"),
+    PARAM_INVALID(10002, "参数错误：%s"),
 
-    FILE_NOT_EXISTS("FILE_NOT_EXISTS", "文件不存在"),
+    FILE_NOT_EXISTS(10003, "文件不存在"),
 
-    FILE_SIZE_INVALID("FILE_SIZE_INVALID", "文件大小不合法"),
+    FILE_SIZE_INVALID(10004, "文件大小不合法"),
 
-    FILE_UPLOAD_FAILED("FILE_UPLOAD_FAILED", "文件上传失败"),
+    FILE_UPLOAD_FAILED(10005, "文件上传失败"),
 
     /**
      * 业务错误
      */
-    SUPER_ADMIN_NOT_ALLOW_DELETE("SUPER_ADMIN_NOT_ALLOW_DELETE", "超级管理员不能删除"),
+    SUPER_ADMIN_NOT_ALLOW_DELETE(20000, "超级管理员不能删除"),
 
-    USER_NOT_EXISTS("USER_NOT_EXISTS", "用户不存在"),
+    USER_NOT_EXISTS(20001, "用户不存在"),
 
-    USER_NAME_EXISTS("USER_NAME_EXISTS", "用户名 %s 已存在"),
+    USER_NAME_EXISTS(20002, "用户名 %s 已存在"),
 
-    USER_PASSWD_WRONG("USER_PASSWD_WRONG", "用户名或密码错误"),
+    USER_PASSWD_WRONG(20003, "用户名或密码错误"),
 
-    OLD_PASSWD_WRONG("OLD_PASSWD_WRONG", "原密码错误"),
+    OLD_PASSWD_WRONG(20004, "原密码错误"),
 
-    USER_AUTHORIZATION("USER_AUTHORIZATION_ERROR", "获取认证信息失败，请稍后重试"),
+    USER_AUTHORIZATION(20005, "获取认证信息失败，请稍后重试"),
 
-    USER_STATUS_INVALID("USER_STATUS_INVALID", "用户状态不正常");
+    USER_STATUS_INVALID(20006, "用户状态不正常");
 
-    private String code;
+
+    private int code;
     private String msg;
 
-    ErrorCode(String code, String msg) {
+    ErrorCode(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
     @Override
-    public String code() {
+    public int code() {
         return code;
     }
 
