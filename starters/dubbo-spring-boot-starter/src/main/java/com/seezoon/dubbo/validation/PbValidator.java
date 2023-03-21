@@ -1,7 +1,6 @@
 package com.seezoon.dubbo.validation;
 
 import io.envoyproxy.pgv.ReflectiveValidatorIndex;
-import io.envoyproxy.pgv.ValidationException;
 import io.envoyproxy.pgv.ValidatorIndex;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -37,13 +36,8 @@ public class PbValidator implements Validator {
                 throw new RpcException(RpcException.VALIDATION_EXCEPTION,
                         "no validator found for " + parameterType.getName());
             }
-            try {
-                validator.assertValid(argument);
-            } catch (ValidationException e) {
-                throw new RpcException(RpcException.VALIDATION_EXCEPTION,
-                        "rpc method " + methodName + " validate failed due to "
-                                + e.getField() + " " + e.getReason(), e);
-            }
+            // throw ValidationException 这里不能转换为RpcException，转换后filter提前结束，不会走到TripleProviderExceptionFilter@onResponse
+            validator.assertValid(argument);
         }
     }
 }

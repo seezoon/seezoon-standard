@@ -1,1 +1,2 @@
-tripleException=com.seezoon.dubbo.support.filter.TripleExceptionFilter
+tripleProviderException=com.seezoon.dubbo.filter.TripleProviderExceptionFilter
+tripleConsumerException=com.seezoon.dubbo.filter.TripleConsumerExceptionFilter
