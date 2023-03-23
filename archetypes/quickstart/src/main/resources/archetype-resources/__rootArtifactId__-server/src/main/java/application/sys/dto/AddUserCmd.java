@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 新增用户入参
+ * 新增用户入参,有修改动作以cmd结尾
  */
 @Getter
 @Setter

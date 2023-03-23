@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.seezoon.demo.domain.**.mapper", markerInterface = BaseMapper.class)
-@EnableDubbo(scanBasePackages = "com.seezoon.demo.interfaces.grpc")
+@EnableDubbo(scanBasePackages = "com.seezoon.demo.interfaces.dubbo")
 public class MainApplication {
 
     public static void main(String[] args) {

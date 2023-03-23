@@ -9,6 +9,5 @@ package com.seezoon.dubbo.constant;
 public class Constants {
 
     public static final String ERROR_CODE_KEY = "err-code";
-    public static final String ERROR_MSG_KEY = "err-msg";
 
 }

@@ -24,10 +24,6 @@ import org.apache.dubbo.rpc.TriRpcStatus;
 @Activate(group = {CommonConstants.PROVIDER})
 public class TripleProviderExceptionFilter implements Filter, Filter.Listener {
 
-    /**
-     * 通信成功，错误在header中体现
-     */
-    private StatusRpcException ok = new StatusRpcException(TriRpcStatus.OK);
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
@@ -43,15 +39,13 @@ public class TripleProviderExceptionFilter implements Filter, Filter.Listener {
         if (exception instanceof RpcException) {
             RpcException rpcException = (RpcException) exception;
             appResponse.setAttachment(Constants.ERROR_CODE_KEY, rpcException.getCode());
-            appResponse.setAttachment(Constants.ERROR_MSG_KEY, rpcException.getMessage());
         } else if (exception instanceof ValidationException) {
             appResponse.setAttachment(Constants.ERROR_CODE_KEY, RpcException.VALIDATION_EXCEPTION);
-            appResponse.setAttachment(Constants.ERROR_MSG_KEY, exception.getMessage());
         } else {
             appResponse.setAttachment(Constants.ERROR_CODE_KEY, RpcException.UNKNOWN_EXCEPTION);
-            appResponse.setAttachment(Constants.ERROR_MSG_KEY, exception.getMessage());
         }
-        appResponse.setException(ok);
+        // 通过grpc trailer 传递异常信息
+        appResponse.setException(new StatusRpcException(TriRpcStatus.INTERNAL.withDescription(exception.getMessage())));
     }
 
     @Override

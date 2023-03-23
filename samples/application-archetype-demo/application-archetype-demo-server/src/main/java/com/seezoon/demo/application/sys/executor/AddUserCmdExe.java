@@ -3,9 +3,8 @@ package com.seezoon.demo.application.sys.executor;
 import com.seezoon.ddd.dto.Response;
 import com.seezoon.demo.application.sys.convertor.UserConvertor;
 import com.seezoon.demo.application.sys.dto.AddUserCmd;
-import com.seezoon.demo.domain.sys.repository.SysUserRepository;
-import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
-import com.seezoon.demo.domain.sys.valueobject.UserStatus;
+import com.seezoon.demo.domain.sys.service.AddUserService;
+import com.seezoon.demo.domain.sys.valueobject.AddUserVO;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class AddUserCmdExe {
 
-    private final SysUserRepository sysUserRepository;
+    private final AddUserService addUserService;
 
     /**
      * 入口函数
@@ -31,9 +30,8 @@ public class AddUserCmdExe {
      * @param cmd
      */
     public Response execute(@NotNull @Valid AddUserCmd cmd) {
-        SysUserPO sysUserPO = UserConvertor.INSTANCE.toPOForAddUser(cmd);
-        sysUserPO.setStatus(UserStatus.VALID);
-        this.sysUserRepository.save(sysUserPO);
+        AddUserVO vo = UserConvertor.INSTANCE.toVO(cmd);
+        addUserService.addUser(vo);
         return Response.success();
     }
 }

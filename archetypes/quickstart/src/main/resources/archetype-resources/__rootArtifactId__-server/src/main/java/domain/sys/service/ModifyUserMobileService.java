@@ -1,10 +1,13 @@
-package com.seezoon.demo.domain.sys.service;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.domain.sys.service;
 
 import com.seezoon.ddd.exception.Assertion;
 import com.seezoon.ddd.exception.ExceptionFactory;
-import com.seezoon.demo.domain.sys.repository.SysUserRepository;
-import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
-import com.seezoon.demo.infrastructure.error.ErrorCode;
+import ${package}.domain.sys.repository.SysUserRepository;
+import ${package}.domain.sys.repository.po.SysUserPO;
+import ${package}.infrastructure.error.ErrorCode;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +28,9 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 @Validated
-public class UserDomainService {
+public class ModifyUserMobileService {
 
     private final SysUserRepository sysUserRepository;
 

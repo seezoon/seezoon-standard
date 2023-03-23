@@ -5,7 +5,7 @@ package ${package}.application.sys.executor;
 
 import com.seezoon.ddd.dto.Response;
 import ${package}.application.sys.dto.ModifyUserMobileCmd;
-import ${package}.domain.sys.service.UserDomainService;
+import ${package}.domain.sys.service.ModifyUserMobileService;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class ModifyUserMobileCmdExe {
 
-    private final UserDomainService userDomainService;
+    private final ModifyUserMobileService modifyUserMobileService;
 
     /**
      * 入口函数
@@ -31,7 +31,7 @@ public class ModifyUserMobileCmdExe {
      */
     public Response execute(@NotNull @Valid ModifyUserMobileCmd cmd) {
         // 如果参数复杂可以将cmd转换为领域层中的值对象或者实体
-        userDomainService.modifyUserMobile(cmd.getUserId(), cmd.getMobile(), cmd.getVerifyCode());
+        modifyUserMobileService.modifyUserMobile(cmd.getUserId(), cmd.getMobile(), cmd.getVerifyCode());
         return Response.success();
     }
 

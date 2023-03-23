@@ -1,9 +1,12 @@
-package com.seezoon.demo.interfaces.grpc;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.interfaces.dubbo;
 
-import com.seezoon.demo.BaseSpringApplicationTest;
-import com.seezoon.demo.helloworld.HelloWorldRequest;
-import com.seezoon.demo.helloworld.HelloWorldResponse;
-import com.seezoon.demo.helloworld.HelloWorldService;
+import ${package}.BaseSpringApplicationTest;
+import ${package}.helloworld.HelloWorldRequest;
+import ${package}.helloworld.HelloWorldResponse;
+import ${package}.helloworld.HelloWorldService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

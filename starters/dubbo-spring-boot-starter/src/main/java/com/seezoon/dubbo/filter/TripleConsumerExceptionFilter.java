@@ -29,13 +29,14 @@ public class TripleConsumerExceptionFilter implements Filter, Filter.Listener {
 
     @Override
     public void onResponse(Result appResponse, Invoker<?> invoker, Invocation invocation) {
-        String code = appResponse.getAttachment(Constants.ERROR_CODE_KEY);
-        if (!appResponse.hasException() && StringUtils.isEmpty(code)) {
+        if (!appResponse.hasException()) {
             return;
         }
-        String msg = appResponse.getAttachment(Constants.ERROR_MSG_KEY);
+        // 不使用header透传异常信息，中文（需要base64）和长度限制
+        String code = appResponse.getAttachment(Constants.ERROR_CODE_KEY);
         if (StringUtils.isNotEmpty(code)) {
-            appResponse.setException(new RpcException(Integer.parseInt(code), msg));
+            Throwable exception = appResponse.getException();
+            appResponse.setException(new RpcException(Integer.parseInt(code), exception.getMessage()));
         }
     }
 

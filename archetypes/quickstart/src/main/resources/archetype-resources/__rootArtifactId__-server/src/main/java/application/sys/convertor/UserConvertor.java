@@ -6,6 +6,7 @@ package ${package}.application.sys.convertor;
 import ${package}.application.sys.dto.AddUserCmd;
 import ${package}.application.sys.dto.clientobject.UserCO;
 import ${package}.domain.sys.repository.po.SysUserPO;
+import ${package}.domain.sys.valueobject.AddUserVO;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -15,7 +16,8 @@ public interface UserConvertor {
 
     UserConvertor INSTANCE = Mappers.getMapper(UserConvertor.class);
 
-    SysUserPO toPOForAddUser(AddUserCmd cmd);
+
+    AddUserVO toVO(AddUserCmd cmd);
 
     UserCO toCO(SysUserPO po);
 

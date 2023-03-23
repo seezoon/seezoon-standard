@@ -23,6 +23,8 @@ target/
 .vscode/
 
 # temp ignore
+logs/
+work/
 *.log
 *.cache
 *.diff

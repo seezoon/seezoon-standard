@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages = "${package}.domain.**.mapper", markerInterface = BaseMapper.class)
-@EnableDubbo(scanBasePackages = "${package}.interfaces.grpc")
+@EnableDubbo(scanBasePackages = "${package}.interfaces.dubbo")
 public class MainApplication {
 
     public static void main(String[] args) {

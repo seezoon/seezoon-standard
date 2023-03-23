@@ -1,4 +1,7 @@
-package com.seezoon.demo.application.sys.dto;
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+package ${package}.domain.sys.valueobject;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -6,11 +9,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 新增用户入参,有修改动作以cmd结尾
+ * 添加用户
  */
 @Getter
 @Setter
-public class AddUserCmd {
+public class AddUserVO {
 
     /**
      * 登录名

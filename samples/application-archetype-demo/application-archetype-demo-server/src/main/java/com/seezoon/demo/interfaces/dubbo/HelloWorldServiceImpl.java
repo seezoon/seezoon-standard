@@ -1,11 +1,8 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package}.interfaces.grpc;
+package com.seezoon.demo.interfaces.dubbo;
 
-import ${package}.helloworld.HelloWorldRequest;
-import ${package}.helloworld.HelloWorldResponse;
-import ${package}.helloworld.HelloWorldService;
+import com.seezoon.demo.helloworld.HelloWorldRequest;
+import com.seezoon.demo.helloworld.HelloWorldResponse;
+import com.seezoon.demo.helloworld.HelloWorldService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 
