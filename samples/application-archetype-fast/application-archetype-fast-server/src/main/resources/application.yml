@@ -38,6 +38,8 @@ springdoc:
   api-docs:
     # 开发测试可以打开，生产关闭
     enabled: false
+  swagger-ui:
+    path: /doc.html
 #feign
 feign:
   client:
