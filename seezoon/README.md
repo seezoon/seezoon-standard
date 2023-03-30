@@ -2,6 +2,8 @@
 
 ## 父pom
 
+> `<relativePath/>设定一个空值默认值为../pom.xml`元素中的地址，文件系统->本地仓库–>远程仓库
+
 ```xml
 
 <parent>
