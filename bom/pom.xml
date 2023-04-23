@@ -19,6 +19,7 @@
         <spring.boot.version>2.7.0</spring.boot.version>
         <spring-cloud.version>2021.0.3</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <netty.version>4.1.77.Final</netty.version>
         <!-- grpc -->
         <grpc.version>1.53.0</grpc.version>
         <protoc.version>3.22.2</protoc.version>
@@ -92,6 +93,14 @@
                 <groupId>build.buf.protoc-gen-validate</groupId>
                 <artifactId>pgv-java-stub</artifactId>
                 <version>${pgv.version}</version>
+            </dependency>
+            <!-- netty -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-bom</artifactId>
+                <version>${netty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- grpc  -->
             <dependency>
