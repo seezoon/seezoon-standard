@@ -49,7 +49,11 @@ public class GenerateMojo extends AbstractMojo {
      */
     @Parameter(property = "seezoon.generate.db.field.prefix")
     private String fieldPrefix;
-
+    /**
+     * PO 验证
+     */
+    @Parameter(property = "seezoon.generate.db.po.validation", defaultValue = "false")
+    private boolean poValidation;
     /**
      * 使用properties 或者命令行，多个英文逗号分隔
      */
@@ -108,6 +112,7 @@ public class GenerateMojo extends AbstractMojo {
 
         springArgs.add("--tablePrefix=" + tablePrefix);
         springArgs.add("--fieldPrefix=" + fieldPrefix);
+        springArgs.add("--poValidation=" + poValidation);
         springArgs.add("--base.dir=" + baseDir);
         springArgs.add("--base.sqlMapper.path=" + baseSqlMapperPath);
         springArgs.add("--base.repository.package=" + baseRepositoryPackage);

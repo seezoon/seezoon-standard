@@ -1,17 +1,5 @@
 package com.seezoon.maven.generator.service;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.constraints.NotBlank;
-
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-
 import com.seezoon.maven.generator.dao.GeneratorDao;
 import com.seezoon.maven.generator.dto.db.DbTable;
 import com.seezoon.maven.generator.dto.db.DbTableColumn;
@@ -19,8 +7,16 @@ import com.seezoon.maven.generator.io.FileCodeGenerator;
 import com.seezoon.maven.generator.plan.TablePlan;
 import com.seezoon.maven.generator.plan.TablePlanHandler;
 import com.seezoon.maven.generator.plan.impl.SystemTablePlanHandlerImpl;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 系统默认生成方案
@@ -62,10 +58,12 @@ public class SystemGeneratorService {
 
     @Value("${fieldPrefix:}")
     private String fieldPrefix;
+    @Value("${poValidation:false}")
+    private boolean poValidation;
 
     public void generate() throws IOException {
         TablePlanHandler tablePlanHandler =
-            new SystemTablePlanHandlerImpl(baseSqlMapperPath, baseRepositoryPackage, baseControllerPackage);
+                new SystemTablePlanHandlerImpl(baseSqlMapperPath, baseRepositoryPackage, baseControllerPackage);
         FileCodeGenerator fileCodeGenerator = new FileCodeGenerator(baseDir);
 
         List<DbTable> allDbTables = new ArrayList<>();
@@ -94,6 +92,7 @@ public class SystemGeneratorService {
                 dbTable.setNormalizedName(dbTable.getName());
             }
             TablePlan tablePlan = tablePlanHandler.generate(dbTable, dbTableColumns);
+            tablePlan.setPoValidation(poValidation);
             tablePlans.add(tablePlan);
         });
         fileCodeGenerator.generate(tablePlans.toArray(new TablePlan[tablePlans.size()]));
@@ -106,7 +105,7 @@ public class SystemGeneratorService {
 
     public DbTable findTable(@NotBlank String tableName) {
         DbTable dbTable = generatorDao.findTable(tableName).stream().findFirst()
-            .orElseThrow(() -> new RuntimeException(String.format("can't find tableName:%s", tableName)));
+                .orElseThrow(() -> new RuntimeException(String.format("can't find tableName:%s", tableName)));
         return dbTable;
     }
 }

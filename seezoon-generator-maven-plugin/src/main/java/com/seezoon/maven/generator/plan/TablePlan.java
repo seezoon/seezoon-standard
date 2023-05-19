@@ -6,11 +6,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 根据表获得的生成方案
@@ -24,7 +22,7 @@ public class TablePlan {
     // 如果不需要请置位空字符串
     public static final String DEFAULT_TABLE_ALIAS = "t";
     public static final String DEFAULT_TABLE_ALIAS_PREFIX =
-        StringUtils.isNotBlank(DEFAULT_TABLE_ALIAS) ? DEFAULT_TABLE_ALIAS + "." : "";
+            StringUtils.isNotBlank(DEFAULT_TABLE_ALIAS) ? DEFAULT_TABLE_ALIAS + "." : "";
 
     /**
      * sql mapper 生成所在路径
@@ -74,6 +72,10 @@ public class TablePlan {
      * 持久化对象名称
      */
     private String classNamePO;
+    /**
+     * PO生成验证
+     */
+    private boolean poValidation;
 
     /**
      * 字段方案
@@ -100,14 +102,14 @@ public class TablePlan {
 
     public boolean isImportDate() {
         return this.getColumnPlans().stream().filter(v -> !v.isDefaultField())
-            .anyMatch(columnPlan -> LocalDateTime.class.getSimpleName().equals(columnPlan.getDataType().javaType())
-                || LocalDate.class.getSimpleName().equals(columnPlan.getDataType().javaType())
-                || LocalTime.class.getSimpleName().equals(columnPlan.getDataType().javaType()));
+                .anyMatch(columnPlan -> LocalDateTime.class.getSimpleName().equals(columnPlan.getDataType().javaType())
+                        || LocalDate.class.getSimpleName().equals(columnPlan.getDataType().javaType())
+                        || LocalTime.class.getSimpleName().equals(columnPlan.getDataType().javaType()));
     }
 
     public boolean isImportBigDecimal() {
         return this.getColumnPlans().stream()
-            .anyMatch(columnPlan -> BigDecimal.class.getSimpleName().equals(columnPlan.getDataType().javaType()));
+                .anyMatch(columnPlan -> BigDecimal.class.getSimpleName().equals(columnPlan.getDataType().javaType()));
     }
 
     public boolean isHasSearch() {

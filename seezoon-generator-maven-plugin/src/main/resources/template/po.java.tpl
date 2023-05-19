@@ -36,6 +36,7 @@ public class ${classNamePO} extends BasePO<${pkPlan.dataType.javaType()}> {
       * ${columnPlan.fieldName!}
       */
       </#if>
+     <#if poValidation>
       <#if !columnPlan.nullable>
         <#if columnPlan.stringType>
     @NotBlank
@@ -46,6 +47,7 @@ public class ${classNamePO} extends BasePO<${pkPlan.dataType.javaType()}> {
       <#if columnPlan.stringType>
     @Size(max = ${columnPlan.maxLength?c})
       </#if>
+     </#if>
     private ${columnPlan.dataType.javaType()} ${columnPlan.javaFieldName};
 
    </#if>
