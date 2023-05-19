@@ -7,23 +7,23 @@ package com.seezoon.maven.generator.constants;
  */
 public enum CodeTemplate {
 
-    SQL_MAPPER("sql.xml.tpl", "${baseSqlMapperPath}/mappings/${moduleName}", "${className}Mapper.xml"),
+    SQL_MAPPER("sql.xml.tpl", "${baseSqlMapperPath}/mappings", "${className}Mapper.xml"),
 
-    PO("po.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/po",
+    PO("po.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/repository/po",
         "${className}PO.java"),
 
     PO_CONDITION("po_condition.java.tpl",
-        "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/po",
+        "src/main/java/${baseRepositoryPackage?replace('.','/')}/repository/po",
         "${className}POCondition.java"),
 
-    MAPPER("mapper.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository/mapper",
+    MAPPER("mapper.java.tpl", "src/main/java/${baseRepositoryPackage?replace('.','/')}/repository/mapper",
         "${className}Mapper.java"),
 
     REPOSITORY("repository.java.tpl",
-        "src/main/java/${baseRepositoryPackage?replace('.','/')}/${moduleName}/repository",
+        "src/main/java/${baseRepositoryPackage?replace('.','/')}/repository",
         "${className}Repository.java"),
 
-    CONTROLLER("controller.java.tpl", "src/main/java/${baseControllerPackage?replace('.','/')}/${moduleName}/web",
+    CONTROLLER("controller.java.tpl", "src/main/java/${baseControllerPackage?replace('.','/')}/web",
         "${className}Controller.java"),
 
     ;
