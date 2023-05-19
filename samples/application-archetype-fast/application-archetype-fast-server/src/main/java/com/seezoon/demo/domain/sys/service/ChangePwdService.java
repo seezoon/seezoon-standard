@@ -1,23 +1,19 @@
 package com.seezoon.demo.domain.sys.service;
 
-import java.util.Objects;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
-
 import com.seezoon.ddd.exception.BizException;
 import com.seezoon.demo.domain.sys.repository.SysUserRepository;
 import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
 import com.seezoon.demo.infrastructure.error.ErrorCode;
 import com.seezoon.demo.infrastructure.security.PasswordEncoder;
-
+import java.util.Objects;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 修改密码
@@ -28,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 @Validated
 public class ChangePwdService {
 
@@ -49,7 +45,7 @@ public class ChangePwdService {
     }
 
     public void changePwd(@NotNull Integer userId, @NotBlank @Min(6) String password,
-        @NotBlank @Min(6) String oldPassword) {
+            @NotBlank @Min(6) String oldPassword) {
         SysUserPO sysUserPO = sysUserRepository.find(userId);
         if (null == sysUserPO) {
             throw new BizException(ErrorCode.USER_NOT_EXISTS.code(), ErrorCode.USER_NOT_EXISTS.msg());

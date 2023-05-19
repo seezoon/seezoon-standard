@@ -24,7 +24,7 @@
         <grpc.version>1.53.0</grpc.version>
         <protoc.version>3.22.2</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-        <dubbo.version>3.1.8</dubbo.version>
+        <dubbo.version>3.2.0</dubbo.version>
         <nacos.version>2.2.1</nacos.version>
         <pgv.version>0.10.1</pgv.version>
         <protobuf.version>3.22.2</protobuf.version>

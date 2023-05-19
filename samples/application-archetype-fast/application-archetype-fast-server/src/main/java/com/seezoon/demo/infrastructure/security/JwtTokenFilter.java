@@ -1,16 +1,23 @@
 package com.seezoon.demo.infrastructure.security;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.util.concurrent.UncheckedExecutionException;
+import com.seezoon.ddd.dto.Response;
+import com.seezoon.ddd.exception.BaseException;
+import com.seezoon.demo.infrastructure.error.ErrorCode;
+import com.seezoon.demo.infrastructure.utils.JsonUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -18,17 +25,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.util.concurrent.UncheckedExecutionException;
-import com.seezoon.ddd.dto.Response;
-import com.seezoon.ddd.exception.BizException;
-import com.seezoon.demo.infrastructure.error.ErrorCode;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 通过jwt 构建登录态
@@ -42,18 +38,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private static final String PREFIX = "Bearer ";
     private final Cache<Integer, UserInfoDetails> caches = CacheBuilder.newBuilder()
-        // 设置容量大小 默认无限
-        // .maximumSize(5000)
-        // 设置超时时间
-        .expireAfterWrite(2, TimeUnit.MINUTES).build();
+            // 设置容量大小 默认无限
+            // .maximumSize(5000)
+            // 设置超时时间
+            .expireAfterWrite(2, TimeUnit.MINUTES).build();
     private final JwtTokenProvider jwtTokenProvider;
     private final UserDetailsLoader userDetailsLoader;
-    private final ObjectMapper objectMapper;
     private final WebAuthenticationDetailsSource webAuthenticationDetailsSource = new WebAuthenticationDetailsSource();
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.isEmpty(authorization) || !authorization.startsWith(PREFIX)) {
             filterChain.doFilter(request, response);
@@ -76,27 +71,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 return;
             }
             UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(userInfoDetails, null, userInfoDetails.getAuthorities());
+                    new UsernamePasswordAuthenticationToken(userInfoDetails, null, userInfoDetails.getAuthorities());
             authentication.setDetails(webAuthenticationDetailsSource.buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
-            return;
-        } catch (BizException e) {
-            log.error("get userDetails biz error:{}", e.getMessage());
-            filterChain.doFilter(request, response);
-            return;
+        } catch (BaseException e) {
+            log.error("get userDetails biz error", e);
+            this.output(response, e.getcode(), e.getMessage());
         } catch (Throwable e) {
-            log.error("get userDetails unkown error:{}", e.getMessage());
+            log.error("get userDetails unkown error", e);
             // 这里面的异常会被spring security 后面的fitlter 转换成401 or 403,所以有异常提前抛出,避免抖动造成用户退出
-            response.setCharacterEncoding(StandardCharsets.UTF_8.name());
-            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            String content = objectMapper.writeValueAsString(
-                Response.error(ErrorCode.USER_AUTHORIZATION.code(), ErrorCode.USER_AUTHORIZATION.msg()));
-            try (PrintWriter writer = response.getWriter()) {
-                writer.write(content);
-                writer.flush();
-            }
-            return;
+            this.output(response, ErrorCode.USER_AUTHORIZATION.code(), ErrorCode.USER_AUTHORIZATION.msg());
         }
     }
 
@@ -108,6 +93,16 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 throw e.getCause();
             }
             throw e;
+        }
+    }
+
+    private void output(HttpServletResponse response, int code, String msg) throws IOException {
+        response.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        String json = JsonUtils.toJson(Response.error(code, msg));
+        try (PrintWriter writer = response.getWriter()) {
+            writer.write(json);
+            writer.flush();
         }
     }
 }

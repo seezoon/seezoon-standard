@@ -1,5 +1,8 @@
 package com.seezoon.demo.infrastructure.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seezoon.demo.infrastructure.properties.SeezoonProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,14 +15,9 @@ import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seezoon.demo.infrastructure.properties.SeezoonProperties;
-
-import lombok.RequiredArgsConstructor;
-
 /**
  * 认证、授权配置
- * 
+ *
  * @author dfenghuang
  * @date 2022/10/11 09:39
  */
@@ -27,10 +25,11 @@ import lombok.RequiredArgsConstructor;
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
 public class WebSecurityConfig {
+
     private static final String PUBLIC_ANT_PATH = "/public/**";
     private static final String LOGIN_ANT_PATH = "/login/**";
     private static final String[] STATIC_ANT_PATH =
-        {"/pages/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"};
+            {"/pages/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtTokenFilter jwtTokenFilter) throws Exception {
@@ -75,8 +74,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public JwtTokenFilter jwtTokenFilter(JwtTokenProvider jwtTokenProvider, UserDetailsLoader userDetailsLoader,
-        ObjectMapper objectMapper) {
-        return new JwtTokenFilter(jwtTokenProvider, userDetailsLoader, objectMapper);
+    public JwtTokenFilter jwtTokenFilter(JwtTokenProvider jwtTokenProvider, UserDetailsLoader userDetailsLoader) {
+        return new JwtTokenFilter(jwtTokenProvider, userDetailsLoader);
     }
 }

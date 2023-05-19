@@ -1,33 +1,29 @@
 package com.seezoon.demo.domain.sys.service;
 
-import java.util.Objects;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
-
 import com.seezoon.ddd.exception.ExceptionFactory;
 import com.seezoon.demo.domain.sys.repository.SysUserRepository;
 import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
 import com.seezoon.demo.domain.sys.valueobject.ModifyUserVO;
 import com.seezoon.demo.infrastructure.error.ErrorCode;
-
+import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 修改用户信息
- * 
+ *
  * @author dfenghuang
  * @date 2022/11/21 12:38
  */
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 @Validated
 public class ModifyUserService {
 
@@ -41,7 +37,7 @@ public class ModifyUserService {
         SysUserPO exists = sysUserRepository.findByUsername(vo.getUsername());
         if (null != exists && !Objects.equals(exists.getUserId(), exists.getUserId())) {
             throw ExceptionFactory.bizException(ErrorCode.USER_NAME_EXISTS.code(),
-                String.format(ErrorCode.USER_NAME_EXISTS.msg(), vo.getUsername()));
+                    String.format(ErrorCode.USER_NAME_EXISTS.msg(), vo.getUsername()));
         }
         sysUserPO.setUserId(vo.getUserId());
         sysUserPO.setPhoto(vo.getPhoto());

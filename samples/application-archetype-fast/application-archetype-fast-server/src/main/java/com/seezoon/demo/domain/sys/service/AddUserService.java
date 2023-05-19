@@ -1,34 +1,30 @@
 package com.seezoon.demo.domain.sys.service;
 
-import java.util.Objects;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
-
 import com.seezoon.demo.domain.sys.repository.SysUserRepository;
 import com.seezoon.demo.domain.sys.repository.po.SysUserPO;
 import com.seezoon.demo.domain.sys.valueobject.AddUserVO;
 import com.seezoon.demo.domain.sys.valueobject.UserStatusVO;
 import com.seezoon.demo.infrastructure.security.PasswordEncoder;
-
+import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * 添加用户
- * 
+ *
  * @author dfenghuang
  * @date 2022/11/21 12:38
  */
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 @Validated
 public class AddUserService {
 
