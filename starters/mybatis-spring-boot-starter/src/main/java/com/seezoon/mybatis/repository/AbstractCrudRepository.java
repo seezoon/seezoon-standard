@@ -26,7 +26,7 @@ import org.springframework.validation.annotation.Validated;
  * @author hdf
  */
 @Validated
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T extends BasePO<PK>, PK> {
 
     @SuppressWarnings("all")
@@ -50,6 +50,16 @@ public abstract class AbstractCrudRepository<D extends CrudMapper<T, PK>, T exte
     @Transactional(readOnly = true)
     public T find(@NotNull PK pk) {
         return this.d.selectByPrimaryKey(pk);
+    }
+
+    /**
+     * 根据主键查询
+     *
+     * @param pk
+     * @return
+     */
+    public T findForUpdate(@NotNull PK pk) {
+        return this.d.selectByPrimaryKeyForUpdate(pk);
     }
 
     /**

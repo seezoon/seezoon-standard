@@ -1,12 +1,10 @@
 package com.seezoon.mybatis.repository.mapper;
 
-import java.util.List;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 import com.seezoon.mybatis.repository.po.AbstractPOQueryCondition;
 import com.seezoon.mybatis.repository.po.BasePO;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 包含基本CRUD定义，DAO 完成基础字段验证
@@ -40,6 +38,14 @@ public interface CrudMapper<T extends BasePO<PK>, PK> extends BaseMapper {
      * @return
      */
     T selectByPrimaryKey(@NotNull PK pk);
+
+    /**
+     * 根据主键查询
+     *
+     * @param pk
+     * @return
+     */
+    T selectByPrimaryKeyForUpdate(@NotNull PK pk);
 
     /**
      * 查询

@@ -1,9 +1,9 @@
-package ${baseRepositoryPackage}.${moduleName}.repository.mapper;
+package ${baseRepositoryPackage}.repository.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
 import com.seezoon.mybatis.repository.mapper.CrudMapper;
-import ${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO};
+import ${baseRepositoryPackage}.repository.po.${classNamePO};
 
 /**
  * ${menuName!}

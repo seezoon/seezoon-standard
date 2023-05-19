@@ -1,4 +1,4 @@
-package ${baseControllerPackage}.${moduleName}.web;
+package ${baseControllerPackage}.web;
 <#list columnPlans as columnPlan>
   <#if columnPlan.uniqueField>
 
@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.annotation.Validated;
 
 import com.github.pagehelper.PageSerializable;
-import ${baseRepositoryPackage}.${moduleName}.repository.${className}Repository;
-import ${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO};
-import ${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}Condition;
+import ${baseRepositoryPackage}.repository.${className}Repository;
+import ${baseRepositoryPackage}.repository.po.${classNamePO};
+import ${baseRepositoryPackage}.repository.po.${classNamePO}Condition;
 import com.seezoon.ddd.dto.Response;
 
 import lombok.RequiredArgsConstructor;

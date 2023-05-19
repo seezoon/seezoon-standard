@@ -1,4 +1,4 @@
-package ${baseRepositoryPackage}.${moduleName}.repository.po;
+package ${baseRepositoryPackage}.repository.po;
 
 <#if importDate>
 import java.time.LocalDate;

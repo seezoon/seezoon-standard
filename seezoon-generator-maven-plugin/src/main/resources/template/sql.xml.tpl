@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${baseRepositoryPackage}.${moduleName}.repository.mapper.${className}Mapper">
-    <resultMap id="BaseResultMap" type="${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}">
+<mapper namespace="${baseRepositoryPackage}.repository.mapper.${className}Mapper">
+    <resultMap id="BaseResultMap" type="${baseRepositoryPackage}.repository.po.${classNamePO}">
         <#list columnPlans as columnPlan>
         <${(columnPlan.dbColumnName == pkPlan.dbColumnName)?string("id","result")} column="${columnPlan.dbColumnName}" jdbcType="${columnPlan.dataType.jdbcType()}" property="${columnPlan.javaFieldName}"/>
         </#list>
@@ -32,7 +32,17 @@
         where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}}
     </select>
 
-    <select id="selectByCondition" parameterType="${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}Condition" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKeyForUpdate" parameterType="${pkPlan.dataType.javaType()}" resultMap="BaseResultMap">
+            select
+            <include refid="Base_Column_List"/>
+            <#if hasBlob>
+            ,<include refid="Blob_Column_List"/>
+            </#if>
+            from <include refid="Query_Table" />
+            where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}} for update
+    </select>
+
+    <select id="selectByCondition" parameterType="${baseRepositoryPackage}.repository.po.${classNamePO}Condition" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from <include refid="Query_Table" />
@@ -82,7 +92,7 @@
         </foreach>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}">
+    <update id="updateByPrimaryKeySelective" parameterType="${baseRepositoryPackage}.repository.po.${classNamePO}">
         update ${tableName} ${defaultTableAlias}
         <set>
         <#list columnPlans as columnPlan>
@@ -95,7 +105,7 @@
         </set>
         where ${defaultTableAliasPrefix}${pkPlan.dbColumnName} = ${"#"}{${pkPlan.javaFieldName}} limit 2
     </update>
-    <update id="updateByPrimaryKey" parameterType="${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}">
+    <update id="updateByPrimaryKey" parameterType="${baseRepositoryPackage}.repository.po.${classNamePO}">
         update ${tableName} ${defaultTableAlias} set
         <#assign firstItem = true>
         <#list columnPlans as columnPlan>

@@ -1,4 +1,4 @@
-package ${baseRepositoryPackage}.${moduleName}.repository;
+package ${baseRepositoryPackage}.repository;
 
 <#list columnPlans as columnPlan>
   <#if columnPlan.uniqueField && columnPlan.stringType>
@@ -16,11 +16,11 @@ import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Repository;
 
 import com.seezoon.mybatis.repository.AbstractCrudRepository;
-import ${baseRepositoryPackage}.${moduleName}.repository.mapper.${className}Mapper;
-import ${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO};
+import ${baseRepositoryPackage}.repository.mapper.${className}Mapper;
+import ${baseRepositoryPackage}.repository.po.${classNamePO};
 <#list columnPlans as columnPlan>
   <#if columnPlan.uniqueField>
-import ${baseRepositoryPackage}.${moduleName}.repository.po.${classNamePO}Condition;
+import ${baseRepositoryPackage}.repository.po.${classNamePO}Condition;
 import org.springframework.transaction.annotation.Transactional;
 
     <#break>
