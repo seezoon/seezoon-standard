@@ -17,15 +17,13 @@
     <properties>
         <!-- spring -->
         <spring.boot.version>2.7.0</spring.boot.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
+        <spring-cloud.version>2021.0.7</spring-cloud.version>
         <netty.version>4.1.77.Final</netty.version>
         <!-- grpc -->
         <grpc.version>1.53.0</grpc.version>
         <protoc.version>3.22.2</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-        <dubbo.version>3.2.0</dubbo.version>
-        <nacos.version>2.2.1</nacos.version>
+        <dubbo.version>3.2.1</dubbo.version>
         <pgv.version>0.10.1</pgv.version>
         <protobuf.version>3.22.2</protobuf.version>
 
@@ -70,23 +68,11 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo-bom</artifactId>
                 <version>${dubbo.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos.version}</version>
             </dependency>
             <!-- proto validate -->
             <dependency>

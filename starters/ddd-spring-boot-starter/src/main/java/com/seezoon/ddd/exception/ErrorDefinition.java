@@ -16,4 +16,13 @@ public interface ErrorDefinition {
 
     String msg();
 
+    /**
+     * 通常前缀为cmdb 规划的模块
+     *
+     * @return
+     */
+    default int prefix() {
+        return 0;
+    }
+
 }
