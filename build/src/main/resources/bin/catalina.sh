@@ -50,6 +50,9 @@ start() {
 }
 # 停止
 stop() {
+  if [ "${IN_CONTAINER}" != true ]; then
+      uninstallSupervisor
+  fi
   running=$(pidRunning)
   if [ $running -eq 0 ]; then
     echoYellow "${APP_NAME} not running"
@@ -117,7 +120,16 @@ startSupervisor() {
 $(crontab -l)
 * * * * * ${cmd} > /dev/null 2>&1 &
 EOF
+echoGreen "installed supervisor"
   fi
+}
+# 关闭自动拉起
+uninstallSupervisor() {
+  cmd="${WORK_DIR}/bin/catalina.sh supervise"
+    crontab <<EOF
+$(crontab -l | grep -v "${cmd}" | grep -v grep)
+EOF
+echoRed "uninstalled supervisor"
 }
 
 supervise() {
