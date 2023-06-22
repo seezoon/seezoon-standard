@@ -20,7 +20,7 @@
         <spring-cloud.version>2021.0.7</spring-cloud.version>
         <netty.version>4.1.77.Final</netty.version>
         <!-- grpc -->
-        <grpc.version>1.53.0</grpc.version>
+        <grpc.version>1.54.1</grpc.version>
         <protoc.version>3.22.2</protoc.version>
         <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
         <dubbo.version>3.2.1</dubbo.version>
@@ -231,6 +231,13 @@
                     <groupId>org.xolstice.maven.plugins</groupId>
                     <artifactId>protobuf-maven-plugin</artifactId>
                     <version>${protobuf-maven-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>io.grpc</groupId>
+                            <artifactId>grpc-api</artifactId>
+                            <version>${grpc.version}</version>
+                        </dependency>
+                    </dependencies>
                     <configuration>
                         <protocArtifact>
                             com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}

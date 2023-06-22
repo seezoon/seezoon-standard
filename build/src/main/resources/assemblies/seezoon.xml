@@ -55,7 +55,7 @@
                 <include>*.*</include>
             </includes>
             <excludes>
-                <exclude>application-local.*</exclude>
+                <exclude>*-local.*</exclude>
             </excludes>
             <fileMode>0644</fileMode>
             <outputDirectory>conf</outputDirectory>
